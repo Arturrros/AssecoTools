@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Form1_aboutToolStripMenuItem_Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Form1_btnBytesSend_Text" xml:space="preserve">
+    <value>Wysłano</value>
+  </data>
+  <data name="Form1_btnCommits_Text" xml:space="preserve">
+    <value>Commits</value>
+  </data>
+  <data name="Form1_btnCPUBYTHIS_Text" xml:space="preserve">
+    <value>CPU</value>
+  </data>
+  <data name="Form1_btnDDL_Text" xml:space="preserve">
+    <value>DDL</value>
+  </data>
+  <data name="Form1_btnDeadlocks_Text" xml:space="preserve">
+    <value>Zakleszczenia</value>
+  </data>
+  <data name="Form1_btnExecutes_Text" xml:space="preserve">
+    <value>Wykonania</value>
+  </data>
+  <data name="Form1_btnGain_Text" xml:space="preserve">
+    <value>Rozmiary</value>
+  </data>
+  <data name="Form1_btnLocks_Text" xml:space="preserve">
+    <value>Blokady</value>
+  </data>
+  <data name="Form1_btnLocks_ToolTip" xml:space="preserve">
+    <value>Pokaż blokady</value>
+  </data>
+  <data name="Form1_btnLongOps_Text" xml:space="preserve">
+    <value>LongOps</value>
+  </data>
+  <data name="Form1_btnParses_Text" xml:space="preserve">
+    <value>Parsowania</value>
+  </data>
+  <data name="Form1_btnPhysicalReads_Text" xml:space="preserve">
+    <value>Fiz. Odcz.</value>
+  </data>
+  <data name="Form1_btnSerwerror_Text" xml:space="preserve">
+    <value>Błędy</value>
+  </data>
+  <data name="Form1_btnSessions_Text" xml:space="preserve">
+    <value>Sesje</value>
+  </data>
+  <data name="Form1_btnTableStatistics_Text" xml:space="preserve">
+    <value>Statystyki</value>
+  </data>
+  <data name="Form1_btnUserCalls_Text" xml:space="preserve">
+    <value>Wywołania</value>
+  </data>
+  <data name="Form1_connectToolStripMenuItem_Text" xml:space="preserve">
+    <value>Połącz</value>
+  </data>
+  <data name="Form1_disconnectToolStripMenuItem_Text" xml:space="preserve">
+    <value>Rozłącz</value>
+  </data>
+  <data name="Form1_eNToolStripMenuItem_Text" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="Form1_fileToolStripMenuItem_Text" xml:space="preserve">
+    <value>Plik</value>
+  </data>
+  <data name="Form1_fileToolStripMenuItem_ToolTip" xml:space="preserve">
+    <value>Połączenie do bazy danych</value>
+  </data>
+  <data name="Form1_FormSchemaStats_tabPage1_Text" xml:space="preserve">
+    <value>Schematy</value>
+  </data>
+  <data name="Form1_groupBox1_Text" xml:space="preserve">
+    <value>Sesje</value>
+  </data>
+  <data name="Form1_groupBox2_Text" xml:space="preserve">
+    <value>Monitorowanie aktywne</value>
+  </data>
+  <data name="Form1_groupBox3_Text" xml:space="preserve">
+    <value>Szybkie narzedzia do developerowania</value>
+  </data>
+  <data name="Form1_infoToolStripMenuItem_Text" xml:space="preserve">
+    <value>Informacje</value>
+  </data>
+  <data name="Form1_langToolStripMenuItem_Text" xml:space="preserve">
+    <value>Lang</value>
+  </data>
+  <data name="Form1_optionsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Opcje</value>
+  </data>
+  <data name="Form1_pLToolStripMenuItem_Text" xml:space="preserve">
+    <value>PL</value>
+  </data>
+  <data name="FormSchemaStats_checkStatisticsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Sprawdz Statystyki</value>
+  </data>
+  <data name="FormSchemaStats_errorToolStripMenuItem_Text" xml:space="preserve">
+    <value>Log błędów</value>
+  </data>
+  <data name="FormSchemaStats_gatherStatisticsToolStripMenuItem_Text" xml:space="preserve">
+    <value>Zbierz Statystyki</value>
+  </data>
+  <data name="FormSchemaStats_GridInfo" xml:space="preserve">
+    <value>Znalezione wiersze w poniższej tabeli (tabele)
+Należy rozważyć zbieranie statystyk dla tych tabel.
+Rozbieżności w statystykach mogą mieć różne powody.
+
+ALL	Wszystkie
+PRC	Zrobione statystyki inne niż 100%
+COLS	Różne statystyki na kolumnach (to niekoniecznie musie być błąd)
+MOD	Liczba modyfikacji w tabeli jest większa niż % tabeli (parametr w opcjach)
+MISS	Brak statystyk (na kolumnach)
+COUNT	Rozbieżność liczby wierszy (tylko dla 0)
+Najważniejsze to PRC,COLS,MISS (na czerwono/odcień)
+Mniej ważne na żółto ( w większości ostrzeżenia o starych „statystykach” to nie musi być błędem) 
+Mimo wszystko, zalecane jest puszczenie na wszystkich poniższych tabelach/partycjach
+Należ mieć na uwadze że niektóre z tabel są traktowane jako tymczasowe i dla nich 
+statystyki będą często nieaktualne.</value>
+  </data>
+  <data name="FormSchemaStats_groupBox1_Text" xml:space="preserve">
+    <value>Zaznacz schemat</value>
+  </data>
+  <data name="FormSchemaStats_groupBox2_Text" xml:space="preserve">
+    <value>Progres</value>
+  </data>
+  <data name="FormSchemaStats_label1_Text" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="FormSchemaStats_label1_Worker_Done" xml:space="preserve">
+    <value>Zakończono</value>
+  </data>
+  <data name="FormSchemaStats_label1_Worker_DoWork" xml:space="preserve">
+    <value>Czekaj...</value>
+  </data>
+  <data name="FormSchemaStats_label1_Worker_DoWork_StoredProc" xml:space="preserve">
+    <value>Czekaj... na zakończenie procedury na serwerze</value>
+  </data>
+  <data name="FormSchemaStats_label1_Worker_FoundRcommendations" xml:space="preserve">
+    <value>Znaleziono rekomendacje dla kilku tabel</value>
+  </data>
+  <data name="FormSchemaStats_label3_Text" xml:space="preserve">
+    <value>Errors/Warnings</value>
+  </data>
+  <data name="FormSchemaStats_label4_Text" xml:space="preserve">
+    <value>Parallel</value>
+  </data>
+  <data name="FormSchemaStats_label5_Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="FormSchemaStats_label6_Text" xml:space="preserve">
+    <value>Modiff</value>
+  </data>
+  <data name="FormSchemaStats_labelObject_Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FormSchemaStats_lockSchemaToolStripMenuItem_Text" xml:space="preserve">
+    <value>Zablokuj Schemat</value>
+  </data>
+  <data name="FormSchemaStats_logToolStripMenuItem_Text" xml:space="preserve">
+    <value>Log wykonania</value>
+  </data>
+  <data name="FormSchemaStats_refreshToolStripMenuItem_Text" xml:space="preserve">
+    <value>Odśwież</value>
+  </data>
+  <data name="FormSchemaStats_showStatTablesToolStripMenuItem_Text" xml:space="preserve">
+    <value>Pokaż stystyki</value>
+  </data>
+  <data name="FormSchemaStats_tablesToolStripMenuItem_Text" xml:space="preserve">
+    <value>Tabele</value>
+  </data>
+  <data name="FormSchemaStats_tabPage1_Text" xml:space="preserve">
+    <value>Schematy</value>
+  </data>
+  <data name="FormSchemaStats_tabPage2_Text" xml:space="preserve">
+    <value>Opcje statystyk</value>
+  </data>
+  <data name="FormSchemaStats_tbtnStop_Text" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton1_Text" xml:space="preserve">
+    <value>ALL</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton2_Text" xml:space="preserve">
+    <value>PRC</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton3_Text" xml:space="preserve">
+    <value>Zbież statystyki</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton4_Text" xml:space="preserve">
+    <value>COUNT</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton5_Text" xml:space="preserve">
+    <value>MOD</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton6_Text" xml:space="preserve">
+    <value>MISS</value>
+  </data>
+  <data name="FormSchemaStats_toolStripButton7_Text" xml:space="preserve">
+    <value>COLS</value>
+  </data>
+  <data name="FormSchemaStats_toolStripDropDownButton1_Text" xml:space="preserve">
+    <value>Logi</value>
+  </data>
+  <data name="FormSchemaStats_unlockSchemaToolStripMenuItem_Text" xml:space="preserve">
+    <value>Odblokuj Schemat</value>
+  </data>
+  <data name="FormSchemaStats_ScriptCopied" xml:space="preserve">
+    <value>Skrypt skopiowany do schowka</value>
+  </data>
+  <data name="FormSchemaStats_tbtnCreateScript_Text" xml:space="preserve">
+    <value>Generuj skrypt</value>
+  </data>
+  <data name="Form1_btnTableStatistics_ToolTip" xml:space="preserve">
+    <value>Statystyki sprawdznie i uruchamianie</value>
+  </data>
+  <data name="FormSchemaStats_createScriptToolStripMenuItem_Text" xml:space="preserve">
+    <value>Utwórz skrypt w 3 plikach (pozim tabeli)</value>
+  </data>
+  <data name="Form1_btnHolds_Text" xml:space="preserve">
+    <value>Blokadki</value>
+  </data>
+  <data name="Form1_btnHolds_ToolTip" xml:space="preserve">
+    <value>Obiekty zablokowane (niekoniecznie blokady). 
+Podczas alterowania obiektów może zdazyć sie ze obiekt jest zablokowany 
+i nie mozna go modyfikować bo jest np w użyciu przez inną sesję</value>
+  </data>
+  <data name="Form1_btnTrans_Text" xml:space="preserve">
+    <value>Aktywne Transakcje</value>
+  </data>
+  <data name="Form1_btnTrans_ToolTip" xml:space="preserve">
+    <value>Aktywne Transakcje</value>
+  </data>
+  <data name="Form1_button_GlobalUndo_Text" xml:space="preserve">
+    <value>Global UNDO Summary</value>
+  </data>
+</root>

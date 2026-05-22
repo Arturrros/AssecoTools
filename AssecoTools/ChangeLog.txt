@@ -1,0 +1,4 @@
+﻿06-04-2022	Zmodyfikowana obługa interfesju odświeżania sesji 
+			Dodane 3 fukcje w klasie ClasSession w FormSession.cs ( ShowSessionSid, ShowSessionOsuser, ShowSessionProgram, ShowSessionHolders)
+			Dodane static string w klasie ClasSessio w Sessions.cs ( SESSION_SID, SESSION_OSUSER, SESSION_PROGRAM, SESSIONS_HOLDERS)
+ 
