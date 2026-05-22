@@ -42,7 +42,7 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(695, 100);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "AssecoTools v1.8\nAplikaca w wielu swych funkcjonalnościach działa na podstawie sc" +
+            this.richTextBox1.Text = "AssecoTools v1.9\nAplikaca w wielu swych funkcjonalnościach działa na podstawie sc" +
     "hamatu ASSECO_TOOLS";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
