@@ -123,7 +123,7 @@ namespace ClassSchemaStats
             }
             catch
             {
-                //MessageBox.Show("No timestats file");
+                //MessageBox.Show("No local timestats file. ");
             }
 
             return null;
