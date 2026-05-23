@@ -1,0 +1,2 @@
+Stop-Service OracleOraDB21Home1TNSListener
+Stop-Service OracleServiceXE
