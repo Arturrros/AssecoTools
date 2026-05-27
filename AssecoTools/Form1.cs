@@ -57,7 +57,7 @@ namespace AssecoTools
                     eNToolStripMenuItem.Checked = true;
                     pLToolStripMenuItem.Checked = false;
                 }
-
+                 
                 culture = new CultureInfo(AssecoTools.Default.CultureInfo);
                 InitializeLanguage(culture);
             }
