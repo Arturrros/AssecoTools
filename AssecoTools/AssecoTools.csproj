@@ -93,7 +93,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>AT.ico</ApplicationIcon>
+    <ApplicationIcon>AT2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>B647020C4EE06CAEA63E27D53D8EEC5B3F1CC853</ManifestCertificateThumbprint>
@@ -322,6 +322,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AT.ico" />
+    <Content Include="AT2.ico" />
     <Content Include="ChangeLog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
