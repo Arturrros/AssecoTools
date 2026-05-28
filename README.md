@@ -2,7 +2,7 @@
 ## Wersja Release 
 Czyli spakowna aplikacja z bibliotekami, którą można przenosić 
 Powinna znajdować się w lokalizacji 
-    \AssecoTools\AssecoToolsApplication\AssecoTools\ZippedRelease\AssecoTools.zip
+    .\AssecoTools\ZippedRelease\AssecoTools.zip
 
 Nie jest ona pakowana automatycznie tylko on demand :)
 Jak sobie przypomne to zrobie :)
