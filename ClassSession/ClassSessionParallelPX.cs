@@ -49,7 +49,7 @@ namespace ClassSession
             }
             if (qsid != 0 && qserial != 0)
             {
-                ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, qsid, qserial);
+                ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, qsid, qserial, sessionOptions);
                 fs.Show();
             }
             else if (qsid != 0 && qserial == 0)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.5.11801.241 oobstable
+VisualStudioVersion = 18.5.11801.241
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssecoTools", "AssecoTools\AssecoTools.csproj", "{3186302F-FAF6-45B5-BB64-9A54D49E6146}"
 EndProject
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassReports", "ClassReports\ClassReports.csproj", "{D89728CD-F8B6-473A-92D3-84E03D5164BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLog", "ClassLog\ClassLog.csproj", "{0C5D0F23-FD77-4BFA-833D-AF11F254EACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssecoToolsOptions", "AssecoToolsOptions\AssecoToolsOptions.csproj", "{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -268,6 +270,22 @@ Global
 		{0C5D0F23-FD77-4BFA-833D-AF11F254EACD}.Release|x64.Build.0 = Release|Any CPU
 		{0C5D0F23-FD77-4BFA-833D-AF11F254EACD}.Release|x86.ActiveCfg = Release|Any CPU
 		{0C5D0F23-FD77-4BFA-833D-AF11F254EACD}.Release|x86.Build.0 = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|x64.Build.0 = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|x64.Build.0 = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E9EAF38-8E45-439D-86C0-B7997D8FCB98}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

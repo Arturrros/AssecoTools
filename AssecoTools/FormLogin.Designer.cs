@@ -48,6 +48,7 @@
             this.buttonSaveConn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.buttonColor = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -185,14 +186,14 @@
             // 
             this.txtConnName.Location = new System.Drawing.Point(6, 16);
             this.txtConnName.Name = "txtConnName";
-            this.txtConnName.Size = new System.Drawing.Size(187, 20);
+            this.txtConnName.Size = new System.Drawing.Size(165, 20);
             this.txtConnName.TabIndex = 17;
             // 
             // buttonSaveConn
             // 
             this.buttonSaveConn.ContextMenuStrip = this.contextMenuStrip1;
             this.buttonSaveConn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveConn.Location = new System.Drawing.Point(199, 16);
+            this.buttonSaveConn.Location = new System.Drawing.Point(177, 16);
             this.buttonSaveConn.Name = "buttonSaveConn";
             this.buttonSaveConn.Size = new System.Drawing.Size(49, 20);
             this.buttonSaveConn.TabIndex = 18;
@@ -223,6 +224,18 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // buttonColor
+            // 
+            this.buttonColor.ContextMenuStrip = this.contextMenuStrip1;
+            this.buttonColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonColor.Location = new System.Drawing.Point(32, 210);
+            this.buttonColor.Name = "buttonColor";
+            this.buttonColor.Size = new System.Drawing.Size(56, 20);
+            this.buttonColor.TabIndex = 19;
+            this.buttonColor.Text = "Color";
+            this.buttonColor.UseVisualStyleBackColor = true;
+            this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
+            // 
             // FormLogin
             // 
             this.AcceptButton = this.button1;
@@ -230,6 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(328, 244);
+            this.Controls.Add(this.buttonColor);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_more);
@@ -279,5 +293,6 @@
         private System.Windows.Forms.Button buttonSaveConn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonColor;
     }
 }

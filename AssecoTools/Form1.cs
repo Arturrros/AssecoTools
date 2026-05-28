@@ -17,6 +17,7 @@ using System.Diagnostics;
 using ClassReports;
 using ClassSize;
 using ClassVisual;
+using AssecoToolsOptions;
 
 namespace AssecoTools
 {
@@ -28,6 +29,8 @@ namespace AssecoTools
         CultureInfo culture;
 
         SecureString ss = new SecureString();
+
+        SessionOptions sessionOption;
 
         public Form1(string[] Args)
         {
@@ -144,16 +147,21 @@ namespace AssecoTools
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormLogin fl = new FormLogin(ss);
+            sessionOption = new SessionOptions();
+            FormLogin fl = new FormLogin(ss, sessionOption);
               
             if (fl.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                ConnectionMain.Close();
+                if (ConnectionMain.State != ConnectionState.Closed)
+                {
+                    ConnectionMain.Close();
+                }
                    
                 ConnectionMain.ConnectionString = fl.connectionString;
                 try 
                 {
                     ConnectionMain.Open();
+
                     toolStripStatusLabel1.Text = toolStripStatusLabel1.Text + " Hostname: " + ConnectionMain.HostName.ToString() + " Instance: " + ConnectionMain.InstanceName + " PDBS: " + ConnectionMain.PDBName.ToString() + " ServiceName: " + ConnectionMain.ServiceName.ToString() + " ServerVersion: " + ConnectionMain.ServerVersion.ToString();
                     OracleGlobalization glob = ConnectionMain.GetSessionInfo();
                     toolStripStatusLabel1.ToolTipText = glob.ToString();
@@ -171,8 +179,13 @@ namespace AssecoTools
                     globalINfo += "TimeZone:\t\t" + glob.TimeZone.ToString() + "\n";
                     //globalINfo += "Territory:\t" + glob..ToString() + "\n";
 
-
                     toolTip1.SetToolTip(statusStrip1, globalINfo);
+                    //if (sessionOption.isActiveSessionColor)
+                    {
+                        this.groupBox1.BackColor = sessionOption.SessionColor;
+                        this.groupBox2.BackColor = sessionOption.SessionColor;
+                        this.groupBox3.BackColor = sessionOption.SessionColor;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -191,7 +204,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp);
+            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, sessionOption);
             fs.Show(this);
         }
 
@@ -199,7 +212,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassWaiters.FormWaiters fw = new ClassWaiters.FormWaiters(conntmp);
+            ClassWaiters.FormWaiters fw = new ClassWaiters.FormWaiters(conntmp, sessionOption);
             fw.Show(this);
         }
 
@@ -363,7 +376,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassWaiters.FormHolds fw = new ClassWaiters.FormHolds(conntmp);
+            ClassWaiters.FormHolds fw = new ClassWaiters.FormHolds(conntmp, sessionOption);
             fw.Show(this);
         }
 

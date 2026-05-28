@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AssecoToolsOptions;
 using Oracle.ManagedDataAccess.Client;
 
 namespace ClassWaiters
@@ -19,13 +20,16 @@ namespace ClassWaiters
 
         List<Blockers> blocerList = new List<Blockers>();
 
-        public FormBlockedObjects(OracleConnection conn1)
+        SessionOptions sessionOptions = new SessionOptions();
+
+        public FormBlockedObjects(OracleConnection conn1, SessionOptions sessionOptions)
         {
             InitializeComponent();
             Connection = conn1;
             tableSessions = new DataTable();
             cmd = new OracleCommand();
             cmd.Connection = conn1;
+            this.sessionOptions = sessionOptions;
         }
 
         private void FormSessions_Load(object sender, EventArgs e)
@@ -91,7 +95,7 @@ namespace ClassWaiters
 
         private void showSidToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClassSession.FormSession fs = new ClassSession.FormSession(Connection, SidSerialSaddr[0], SidSerialSaddr[1]);
+            ClassSession.FormSession fs = new ClassSession.FormSession(Connection, SidSerialSaddr[0], SidSerialSaddr[1], sessionOptions);
             if (fs.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
  

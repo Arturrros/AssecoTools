@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text; 
 using System.Windows.Forms;
+using AssecoToolsOptions;
 using Oracle.ManagedDataAccess.Client;
 
 namespace ClassWaiters
@@ -21,13 +22,16 @@ namespace ClassWaiters
  
         DataRowView drv;
 
-        public FormHolds(OracleConnection conn1)
+        SessionOptions sessionOptions;
+
+        public FormHolds(OracleConnection conn1, SessionOptions sessionOptions)
         {
             InitializeComponent();
             Connection = conn1;
             tableHoldings = new DataTable();
             cmd = new OracleCommand();
             cmd.Connection = conn1;
+            this.sessionOptions = sessionOptions;
         }
 
         
@@ -83,7 +87,7 @@ namespace ClassWaiters
                 int sid = Convert.ToInt32(drv["sid"]);
                 int serial = Convert.ToInt32(drv["serial#"]);
 
-                ClassSession.FormSession fs = new ClassSession.FormSession(Connection, sid, serial);
+                ClassSession.FormSession fs = new ClassSession.FormSession(Connection, sid, serial, sessionOptions);
                 if (fs.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {}
             }

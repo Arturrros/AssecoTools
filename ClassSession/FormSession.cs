@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ClassViewWindow;
 using Oracle.ManagedDataAccess.Client;
 using static System.Collections.Specialized.BitVector32;
+using AssecoToolsOptions;
 
 namespace ClassSession
 {
@@ -24,16 +25,19 @@ namespace ClassSession
         DataRowView drv;
         Int32 timerCount = 0;
         Int32 timerCountMax = 100;
+        SessionOptions sessionOptions;
 
-        public FormSession(OracleConnection Connection)
+        public FormSession(OracleConnection Connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
             ShowSessions(SQLStrings.SESSIONS_ALL_USER_IN_WORK);
             toolStripComboBox2.SelectedIndex = 1;
-            SetTextFromConnectioNString(Connection);
+            SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
+            this.sessionOptions = sessionOptions;
+            toolStrip1.BackColor = sessionOptions.SessionColor;
         }
-        public FormSession(OracleConnection Connection, int Sid, int Serial)
+        public FormSession(OracleConnection Connection, int Sid, int Serial, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -43,9 +47,11 @@ namespace ClassSession
             toolStripComboBox2.SelectedIndex = 0;
             toolStripComboBox1.SelectedIndex = 2;
             toolStripTextBox1.Text = sid.ToString();
-            SetTextFromConnectioNString(Connection);
+            SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
+            this.sessionOptions = sessionOptions;
+            toolStrip1.BackColor = sessionOptions.SessionColor;
         }
-        public FormSession(OracleConnection Connection, int Sid)
+        public FormSession(OracleConnection Connection, int Sid, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -54,14 +60,16 @@ namespace ClassSession
             toolStripComboBox2.SelectedIndex = 0;
             toolStripComboBox1.SelectedIndex = 2;
             toolStripTextBox1.Text = sid.ToString();
-            SetTextFromConnectioNString(Connection);
+            SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
+            this.sessionOptions = sessionOptions;
+            toolStrip1.BackColor = sessionOptions.SessionColor;
         }
 
-        private void SetTextFromConnectioNString(OracleConnection tmpConnection)
+        private void SetTextFromConnectioNString(OracleConnection tmpConnection, string userConnectionName)
         {
             try {
-                this.Text += String.IsNullOrEmpty(tmpConnection.Database.ToString()) ? "" : " DB: " + tmpConnection.Database.ToString();
-                this.Text += String.IsNullOrEmpty(tmpConnection.PDBName.ToString())?"":" PDB: " + tmpConnection.PDBName.ToString();
+                this.Text += String.IsNullOrEmpty(tmpConnection.Database.ToString()) ? "" : " DB: " + tmpConnection.Database.ToString() + " UserConnectionName: " + userConnectionName;
+                this.Text += String.IsNullOrEmpty(tmpConnection.PDBName.ToString())?"":" PDB: " + tmpConnection.PDBName.ToString() + " UserConnectionName: " + userConnectionName; 
             }
             catch { }
         }
@@ -515,7 +523,7 @@ namespace ClassSession
             conntmp.Open();
             Int32 BloSid = Convert.ToInt32(drv["blo_sess"]);
 
-             ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, BloSid);
+            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, BloSid, sessionOptions);
             fs.Show();
             //if (fs.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             //{

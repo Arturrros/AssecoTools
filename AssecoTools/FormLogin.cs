@@ -20,10 +20,13 @@ namespace AssecoTools
         public string connectionString;
         SecureString ss;
 
-        public FormLogin(SecureString Ss)
+        AssecoToolsOptions.SessionOptions so;
+
+        public FormLogin(SecureString Ss, AssecoToolsOptions.SessionOptions So)
         {
             InitializeComponent();
             ss = Ss;
+            so = So;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace AssecoTools
                     txtSERVICE_NAME.Text = line[2];
                     txtUSER.Text = line[3];
                     txtConnName.Text = line[4];
+                    so.userConnectionName = line[4];
                 }
             }
             else
@@ -61,6 +65,7 @@ namespace AssecoTools
                 txtSERVICE_NAME.Text = AssecoTools.Default.ServiceName;
                 txtUSER.Text = AssecoTools.Default.UserName;
                 txtConnName.Text = AssecoTools.Default.ConnName;
+                so.userConnectionName = AssecoTools.Default.ConnName;
             }
             txtPASSWORD.Select();
             txtPASSWORD.Focus();
@@ -207,6 +212,18 @@ namespace AssecoTools
         private void button3_Click(object sender, EventArgs e)
         {
             Process.Start(Application.StartupPath + "\\systems.txt");
+        }
+
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.SolidColorOnly = true;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                buttonColor.BackColor = cd.Color;
+                so.SessionColor = cd.Color;
+                so.isActiveSessionColor = true;
+            }
         }
     }
 }

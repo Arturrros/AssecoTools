@@ -168,6 +168,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssecoToolsOptions\AssecoToolsOptions.csproj">
+      <Project>{0e9eaf38-8e45-439d-86c0-b7997d8fcb98}</Project>
+      <Name>AssecoToolsOptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassSession\ClassSession.csproj">
       <Project>{76a5dc05-e74f-4349-8ce3-8ccea4fd6d2f}</Project>
       <Name>ClassSession</Name>

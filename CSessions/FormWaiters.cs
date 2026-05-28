@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AssecoToolsOptions;
 using ClassSession;
 using CSessions;
 using Oracle.ManagedDataAccess.Client;
@@ -22,13 +23,16 @@ namespace ClassWaiters
 
         List<Blockers> blocerList = new List<Blockers>();
 
-        public FormWaiters(OracleConnection conn1)
+        SessionOptions sessionOptions;
+
+        public FormWaiters(OracleConnection conn1, SessionOptions sessionOptions)
         {
             InitializeComponent();
             Connection = conn1;
             tableSessions = new DataTable();
             cmd = new OracleCommand();
             cmd.Connection = conn1;
+            this.sessionOptions = sessionOptions;
         }
 
         private void FormSessions_Load(object sender, EventArgs e)
@@ -152,7 +156,7 @@ namespace ClassWaiters
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
             
-            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, SidSerialSaddr[0], SidSerialSaddr[1]);
+            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, SidSerialSaddr[0], SidSerialSaddr[1], sessionOptions);
             if (fs.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
  
