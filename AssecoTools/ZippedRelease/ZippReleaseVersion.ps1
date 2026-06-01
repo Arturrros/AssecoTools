@@ -1,7 +1,7 @@
 <#
     .DESCRIPTION
-    Skrypt tylko do wewnêtrznego u¿ytku  
-    Kompresuje wersjê Release do dwóch lokalizacji 
+    Skrypt tylko do wewnï¿½trznego uï¿½ytku  
+    Kompresuje wersjï¿½ Release do dwï¿½ch lokalizacji 
 #>
 
 $ReleasePath = "C:\Users\Art\Dokumenty\Visual Studio 2026\Projects\AssecoTools\AssecoToolsApplication\AssecoTools\ZippedRelease\AssecoTools.zip"
@@ -18,4 +18,5 @@ Path = "C:\Users\Art\Dokumenty\Visual Studio 2026\Projects\AssecoTools\AssecoToo
 CompressionLevel = "Fastest"
 DestinationPath = "C:\Users\Art\Dokumenty\Visual Studio 2026\Projects\AssecoTools\AssecoToolsApplication\AssecoTools\ZippedRelease\AssecoTools.zip"
 }
+
 Compress-Archive @compress2
