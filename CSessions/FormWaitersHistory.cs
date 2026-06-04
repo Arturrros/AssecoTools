@@ -10,12 +10,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using AssecoToolsOptions;
 
 namespace CSessions
 {
     public partial class FormWaitersHistory : Form
     {
+        SessionOptions sessionOptions;
         readonly OracleConnection Connection;
         readonly Int32 sid;
         readonly Int32 serial;
@@ -29,6 +30,12 @@ namespace CSessions
             InitializeComponent();
             this.Connection = Connection;
             InitializeEaiters();
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                
+                this.menuStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         public FormWaitersHistory(OracleConnection Connection, int Sid)
@@ -37,6 +44,11 @@ namespace CSessions
             this.Connection = Connection;
             this.sid = Sid;
             InitializeEaiters();
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                this.menuStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
         private void InitializeEaiters()
         {
@@ -61,7 +73,7 @@ namespace CSessions
         private void sqlidToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sql_id = drv["wai_sql_id"].ToString();
-            FormSqlId fsi = new FormSqlId(Connection, sql_id);
+            FormSqlId fsi = new FormSqlId(Connection, sql_id, sessionOptions);
             fsi.Show(this);
         }
 

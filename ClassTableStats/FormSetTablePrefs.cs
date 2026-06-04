@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassTableStats;
 using Oracle.ManagedDataAccess.Client;
+using AssecoToolsOptions;
 
 namespace ClassSchemaStats
 {
@@ -20,6 +21,7 @@ namespace ClassSchemaStats
     /// </summary>
     public partial class FormSetTablePrefs : Form
     {
+        SessionOptions sessionOptions;
         OracleConnection connection;
         string owner = string.Empty;
         string tableName = string.Empty;
@@ -30,12 +32,17 @@ namespace ClassSchemaStats
         DataTable dtActivePref = new DataTable();
         BindingSource bs = new BindingSource();
 
-        public FormSetTablePrefs(OracleConnection Connection, string Owner, string TableName)
+        public FormSetTablePrefs(OracleConnection Connection, string Owner, string TableName, SessionOptions sessionOptions)
         {
             InitializeComponent();
             owner = Owner;
             connection = Connection;
             tableName = TableName;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                panel3.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         private void FormSetTablePrefs_Load(object sender, EventArgs e)
@@ -573,7 +580,7 @@ namespace ClassSchemaStats
             OracleConnection conntmp = (OracleConnection)connection.Clone();
             conntmp.Open();
 
-            FormSchemaStatsInternalTable fssit = new FormSchemaStatsInternalTable(conntmp,owner, tableName, textBox1.Text);
+            FormSchemaStatsInternalTable fssit = new FormSchemaStatsInternalTable(conntmp,owner, tableName, textBox1.Text, sessionOptions);
             fssit.StartPosition = FormStartPosition.CenterParent;
             fssit.Show(this);
 

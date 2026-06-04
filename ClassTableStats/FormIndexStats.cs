@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Drawing;
 using Oracle.ManagedDataAccess.Client;
-
+using AssecoToolsOptions;
 
 using System.Windows.Forms;
 
@@ -16,6 +16,7 @@ namespace ClassSchemaStats
     /// </summary>
     public partial class FormIndexStats : Form
     {
+        SessionOptions sessionOptions;
         public delegate void Worker_Info_d(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt);
         public delegate void Worker_InfoTxt_d(string buff);
 
@@ -34,7 +35,7 @@ namespace ClassSchemaStats
         String execBuffer = String.Empty;
         Int32 execBufferCount = 0;
 
-        public FormIndexStats(OracleConnection Connection, string Owner, string Tablename, string Degree ,string EstimatePercent, string NoInvalidate)
+        public FormIndexStats(OracleConnection Connection, string Owner, string Tablename, string Degree ,string EstimatePercent, string NoInvalidate, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -58,6 +59,11 @@ namespace ClassSchemaStats
             worker.DoWork += Worker_DoWork;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.ProgressChanged += Worker_ProgressChanged;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

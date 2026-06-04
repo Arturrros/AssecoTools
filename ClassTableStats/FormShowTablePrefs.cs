@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using AssecoToolsOptions;
 
 namespace ClassSchemaStats
 {
@@ -18,17 +19,26 @@ namespace ClassSchemaStats
     /// </summary>
     public partial class FormShowTablePrefs : Form
     {
+        SessionOptions sessionOptions;
         OracleConnection conn;
         string owner;
         BindingSource bsPerfs;
         DataTable dtPrefs = new DataTable();
 
-        public FormShowTablePrefs(OracleConnection Connection, string Owner)
+        public FormShowTablePrefs(OracleConnection Connection, string Owner, SessionOptions sessionOptions)
         {
             InitializeComponent();
             conn = Connection;
             owner = Owner;
             bsPerfs = new BindingSource();
+            this.sessionOptions = sessionOptions;
+
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                panel1.BackColor = sessionOptions.SessionColor;
+            }
+
         }
 
         private void FormShowTablePrefs_Load(object sender, EventArgs e)

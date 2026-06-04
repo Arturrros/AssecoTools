@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using AssecoToolsOptions;
 
 namespace ClassIndexes
 {
     public partial class FormFKIndexes : Form
     {
+        SessionOptions sessionOptions;
         OracleConnection Connection;
         DataTable tableOfIndexes;
         BindingSource bindingSource;
@@ -20,11 +22,16 @@ namespace ClassIndexes
         /// Created 12-2022
         /// </summary>
         /// <param name="connectionString">connectionSrting - otwiera nowe połącznie do bazy</param>
-        public FormFKIndexes(OracleConnection Connection)
+        public FormFKIndexes(OracleConnection Connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
             InitializeTableOfIndexes();
             this.Connection = Connection;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         /// <summary>

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using AssecoToolsOptions;
+using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using Oracle.ManagedDataAccess.Client;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ClassTableStats
 {
     public partial class FormSchemaStatsInternalTable : Form
     {
+        SessionOptions sessionOptions;
         OracleConnection connection;
         private string owner = string.Empty;
         private string tableName = string.Empty;
@@ -26,7 +28,7 @@ namespace ClassTableStats
         DataTable TCols = new DataTable();
 
 
-        public FormSchemaStatsInternalTable(OracleConnection Connection, string Owner, string TableName, string MethodOpt)
+        public FormSchemaStatsInternalTable(OracleConnection Connection, string Owner, string TableName, string MethodOpt, SessionOptions sessionOptions)
         {
             InitializeComponent();
             connection = Connection;
@@ -38,7 +40,11 @@ namespace ClassTableStats
             bs = new BindingSource(TCols, null);
             bs.CurrentChanged += Bs_CurrentChanged;
             dataGridView1.DataSource = bs;
-
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                this.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         private void Bs_CurrentChanged(object sender, EventArgs e)

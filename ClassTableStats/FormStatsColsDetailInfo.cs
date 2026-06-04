@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using AssecoToolsOptions;
 
 namespace ClassSchemaStats
 {
@@ -18,6 +19,7 @@ namespace ClassSchemaStats
     /// </summary>
     public partial class FormStatsColsDetailInfo : Form
     {
+        SessionOptions sessionOptions;
         readonly BackgroundWorker worker;
         public delegate void Worker_Info_d(string info);
         private readonly OracleCommand cmdTabHist;
@@ -38,7 +40,7 @@ namespace ClassSchemaStats
 
 
         bool autostop = true;
-        public FormStatsColsDetailInfo(OracleConnection Connection, string Owner, string TableName)
+        public FormStatsColsDetailInfo(OracleConnection Connection, string Owner, string TableName, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -54,6 +56,7 @@ namespace ClassSchemaStats
                 WorkerReportsProgress = true
             };
 
+            toolStripLabel2.Text = TableName;
 
             cmdTabHist = new OracleCommand();
             cmdTabHist.Connection = Connection;
@@ -61,11 +64,16 @@ namespace ClassSchemaStats
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.RunWorkerAsync();
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            label1.Visible = false;
+            toolStripLabel1.Visible = false;
             dataGridView1.DataSource = TabColsStats;
             dataGridView2.DataSource = TabHistory;
             dataGridView3.DataSource = TabModyfications;
@@ -475,7 +483,7 @@ namespace ClassSchemaStats
 
         private void Worker_Info(string Info)
         {
-            if (label1.InvokeRequired)
+            if (toolStrip1.InvokeRequired)
             {
                 Worker_Info_d wid = new Worker_Info_d(Worker_Info);
                 this.Invoke(wid,"Wait...");

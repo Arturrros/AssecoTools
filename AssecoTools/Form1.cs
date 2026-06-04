@@ -30,7 +30,7 @@ namespace AssecoTools
 
         SecureString ss = new SecureString();
 
-        SessionOptions sessionOption;
+        SessionOptions sessionOptions;
 
         public Form1(string[] Args)
         {
@@ -134,6 +134,9 @@ namespace AssecoTools
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
                 groupBox3.Enabled = false;
+                sessionOptions.isActiveSessionColor = false;
+                sessionOptions.SessionColor = SystemColors.Control;
+                this.menuStrip1.BackColor = SystemColors.Control;
 
             }
 
@@ -147,8 +150,8 @@ namespace AssecoTools
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sessionOption = new SessionOptions();
-            FormLogin fl = new FormLogin(ss, sessionOption);
+            sessionOptions = new SessionOptions();
+            FormLogin fl = new FormLogin(ss, sessionOptions);
               
             if (fl.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
@@ -180,11 +183,12 @@ namespace AssecoTools
                     //globalINfo += "Territory:\t" + glob..ToString() + "\n";
 
                     toolTip1.SetToolTip(statusStrip1, globalINfo);
-                    //if (sessionOption.isActiveSessionColor)
+                    if (sessionOptions.isActiveSessionColor)
                     {
-                        this.groupBox1.BackColor = sessionOption.SessionColor;
-                        this.groupBox2.BackColor = sessionOption.SessionColor;
-                        this.groupBox3.BackColor = sessionOption.SessionColor;
+                        this.menuStrip1.BackColor = sessionOptions.SessionColor;
+                        //this.groupBox1.BackColor = sessionOptions.SessionColor;
+                        //this.groupBox2.BackColor = sessionOptions.SessionColor;
+                        //this.groupBox3.BackColor = sessionOptions.SessionColor;
                     }
                 }
                 catch (Exception ex)
@@ -204,7 +208,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, sessionOption);
+            ClassSession.FormSession fs = new ClassSession.FormSession(conntmp, sessionOptions);
             fs.Show(this);
         }
 
@@ -212,7 +216,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassWaiters.FormWaiters fw = new ClassWaiters.FormWaiters(conntmp, sessionOption);
+            ClassWaiters.FormWaiters fw = new ClassWaiters.FormWaiters(conntmp, sessionOptions);
             fw.Show(this);
         }
 
@@ -220,7 +224,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.ERROR_LAST24H);
+            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.ERROR_LAST24H, sessionOptions);
             fg.Show(this);
         }
 
@@ -228,7 +232,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.DDL_LAST1000);
+            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.DDL_LAST1000, sessionOptions);
             fg.Show(this);
         }
 
@@ -236,7 +240,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.SESSION_LONGOPS);
+            ClassServerError.FormServerError fg = new ClassServerError.FormServerError(conntmp, ClassServerError.SQLStrings.SESSION_LONGOPS, sessionOptions);
             fg.Show(this);
         }
 
@@ -252,7 +256,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Executes", ClassMonitor.SQLStrings.EXECUTIONS, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Executes", ClassMonitor.SQLStrings.EXECUTIONS, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -260,7 +264,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Parse Hard", ClassMonitor.SQLStrings.PARSE_TOTAL, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Parse Hard", ClassMonitor.SQLStrings.PARSE_TOTAL, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -268,7 +272,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("User Calls", ClassMonitor.SQLStrings.USER_CALLS, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("User Calls", ClassMonitor.SQLStrings.USER_CALLS, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -276,7 +280,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("ENQUENE DEADLOCK", ClassMonitor.SQLStrings.ENQUENE_DEADLOCK, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("ENQUENE DEADLOCK", ClassMonitor.SQLStrings.ENQUENE_DEADLOCK, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -290,7 +294,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassSchemaStats.FormSchemaStats ft = new ClassSchemaStats.FormSchemaStats(conntmp, culture);
+            ClassSchemaStats.FormSchemaStats ft = new ClassSchemaStats.FormSchemaStats(conntmp, culture, sessionOptions);
             ft.Show(this);
         }
 
@@ -298,7 +302,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Commits", ClassMonitor.SQLStrings.COMMITS, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Commits", ClassMonitor.SQLStrings.COMMITS, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -306,7 +310,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("CPU", ClassMonitor.SQLStrings.CPU_BY_THIS, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("CPU", ClassMonitor.SQLStrings.CPU_BY_THIS, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -314,7 +318,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Physical Reads", ClassMonitor.SQLStrings.PHYSICAL_READS, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Physical Reads", ClassMonitor.SQLStrings.PHYSICAL_READS, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -322,7 +326,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Bytes send to client", ClassMonitor.SQLStrings.BYTES_NETWORK_SEND, conntmp);
+            ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Bytes send to client", ClassMonitor.SQLStrings.BYTES_NETWORK_SEND, conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -367,7 +371,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassIndexes.FormFKIndexes ft = new ClassIndexes.FormFKIndexes(conntmp);
+            ClassIndexes.FormFKIndexes ft = new ClassIndexes.FormFKIndexes(conntmp, sessionOptions);
             ft.StartPosition = FormStartPosition.CenterParent; 
             ft.Show(this);
         }
@@ -376,7 +380,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassWaiters.FormHolds fw = new ClassWaiters.FormHolds(conntmp, sessionOption);
+            ClassWaiters.FormHolds fw = new ClassWaiters.FormHolds(conntmp, sessionOptions);
             fw.Show(this);
         }
 
@@ -384,7 +388,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("TMP", "Temporary Tables", ClassMonitor.SQLStrings.SESSION_TMP, conntmp, 50, 1200);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("TMP", "Temporary Tables", ClassMonitor.SQLStrings.SESSION_TMP, conntmp, 50, 1200, sessionOptions);
             fm.Show(this);
         }
 
@@ -392,7 +396,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("REC", "Undo Recover", ClassMonitor.SQLStrings.UNDO_RECOVER, conntmp, 50, 700);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("REC", "Undo Recover", ClassMonitor.SQLStrings.UNDO_RECOVER, conntmp, 50, 700, sessionOptions);
             fm.Show(this);
         }
 
@@ -400,7 +404,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("UND", "Undo Size", ClassMonitor.SQLStrings.UNDO_SIZE, conntmp, 50, 700);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("UND", "Undo Size", ClassMonitor.SQLStrings.UNDO_SIZE, conntmp, 50, 700, sessionOptions);
             fm.Show(this);
         }
 
@@ -408,7 +412,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("UND", "Global Undo Size", ClassMonitor.SQLStrings.GLOBAL_UNDO_SIZE, conntmp, 50, 400);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("UND", "Global Undo Size", ClassMonitor.SQLStrings.GLOBAL_UNDO_SIZE, conntmp, 50, 400, sessionOptions);
             fm.Show(this);
         }
 
@@ -424,7 +428,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            FormSqlId fm = new FormSqlId(conntmp);
+            FormSqlId fm = new FormSqlId(conntmp, sessionOptions);
             fm.Show(this);
         }
 
@@ -432,7 +436,7 @@ namespace AssecoTools
         {
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("", "Transactions", ClassMonitor.SQLStrings.SESION_TRANSACTION, conntmp, 50, 1200);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("", "Transactions", ClassMonitor.SQLStrings.SESION_TRANSACTION, conntmp, 50, 1200, sessionOptions);
             fm.Show(this);
         }
 
@@ -454,7 +458,7 @@ namespace AssecoTools
 
             OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("", "Open Cursors", ClassMonitor.SQLStrings.OPEN_CUROSORS, conntmp, 150, 350);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("", "Open Cursors", ClassMonitor.SQLStrings.OPEN_CUROSORS, conntmp, 150, 350, sessionOptions);
             fm.Show(this);
         }
 

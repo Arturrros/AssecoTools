@@ -8,6 +8,7 @@ using System.Text;
 using Oracle.ManagedDataAccess.Client;
 using System.Globalization;
 using System.Resources;
+using AssecoToolsOptions;
 
 using System.Windows.Forms;
 using System.Reflection;
@@ -16,6 +17,7 @@ namespace ClassSchemaStats
 {
     public partial class FormSchemaStats : Form
     {
+        SessionOptions sessionOptions;
         Assembly assembly;
         ResourceManager resman;
         CultureInfo culture; 
@@ -38,7 +40,7 @@ namespace ClassSchemaStats
         Int32 execBufferCount = 0;
 
 
-        public FormSchemaStats(OracleConnection Connection , CultureInfo Culture)
+        public FormSchemaStats(OracleConnection Connection , CultureInfo Culture, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -63,6 +65,11 @@ namespace ClassSchemaStats
             InitializeLanguage(culture);
             CmdGatherTable = new OracleCommand();
             CmdGatherTable.Connection = Connection;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
         
         void InitializeLanguage(CultureInfo ci)
@@ -389,7 +396,7 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
                 //FormTableStats fts = new FormTableStats(conntmp, schema, Convert.ToInt16(txtParallel.Text), Convert.ToInt16(txtEstimatePrc.Text), checkBox1.Checked,checkBox2.Checked);
-                FormTableStats fts = new FormTableStats(conntmp, schema);
+                FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions);
                 fts.StartPosition = FormStartPosition.CenterScreen;
                 fts.Show(this);
             }
@@ -795,7 +802,7 @@ namespace ClassSchemaStats
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
             //FormTableStats fts = new FormTableStats(conntmp, schema, Convert.ToInt16(txtParallel.Text), Convert.ToInt16(txtEstimatePrc.Text), checkBox1.Checked, checkBox2.Checked);
-            FormTableStats fts = new FormTableStats(conntmp, schema);
+            FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions);
             fts.StartPosition = FormStartPosition.CenterScreen; 
             fts.Show(this);
         }
@@ -839,7 +846,7 @@ namespace ClassSchemaStats
             string schema = checkedListBox1.SelectedItem.ToString();
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
-            FormShowTablePrefs fts = new FormShowTablePrefs(conntmp, schema);
+            FormShowTablePrefs fts = new FormShowTablePrefs(conntmp, schema, sessionOptions);
             fts.StartPosition = FormStartPosition.CenterScreen;
             fts.Show(this);
         }

@@ -205,6 +205,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssecoToolsOptions\AssecoToolsOptions.csproj">
+      <Project>{0e9eaf38-8e45-439d-86c0-b7997d8fcb98}</Project>
+      <Name>AssecoToolsOptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLog\ClassLog.csproj">
       <Project>{0c5d0f23-fd77-4bfa-833d-af11f254eacd}</Project>
       <Name>ClassLog</Name>

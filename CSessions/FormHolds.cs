@@ -32,6 +32,10 @@ namespace ClassWaiters
             cmd = new OracleCommand();
             cmd.Connection = conn1;
             this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         

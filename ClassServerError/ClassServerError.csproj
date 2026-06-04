@@ -138,6 +138,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssecoToolsOptions\AssecoToolsOptions.csproj">
+      <Project>{0e9eaf38-8e45-439d-86c0-b7997d8fcb98}</Project>
+      <Name>AssecoToolsOptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassMonitor\ClassMonitor.csproj">
       <Project>{EFD7C7AA-669E-4599-B463-E715F64E252A}</Project>
       <Name>ClassMonitor</Name>
@@ -160,6 +164,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

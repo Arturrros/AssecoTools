@@ -168,6 +168,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssecoToolsOptions\AssecoToolsOptions.csproj">
+      <Project>{0e9eaf38-8e45-439d-86c0-b7997d8fcb98}</Project>
+      <Name>AssecoToolsOptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassViewWindow\ClassViewWindow.csproj">
       <Project>{EE2AA308-1D50-4584-9272-AAF38CF7C1E0}</Project>
       <Name>ClassViewWindow</Name>

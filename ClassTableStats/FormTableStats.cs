@@ -1,20 +1,20 @@
-﻿using System;
+﻿using AssecoToolsOptions;
+using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
-using Oracle.ManagedDataAccess.Client;
-
-
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace ClassSchemaStats
 {
     public partial class FormTableStats : Form
     {
+        SessionOptions sessionOptions;
         public delegate void Worker_Info_d(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt);
         public delegate void Worker_InfoTxt_d(string buff);
 
@@ -43,7 +43,7 @@ namespace ClassSchemaStats
         Int32 execBufferCount = 0;
 
 //        public FormTableStats(OracleConnection Connection, string Owner,int Degree ,int EstimatePercent, bool NoInvalidate, bool Cascade)
-        public FormTableStats(OracleConnection Connection, string Owner)
+        public FormTableStats(OracleConnection Connection, string Owner, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -64,6 +64,12 @@ namespace ClassSchemaStats
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             worker.ProgressChanged += worker_ProgressChanged;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
+
         }
 
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -533,7 +539,7 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
                 SetStatsValues();
-                FormIndexStats fts = new FormIndexStats(conntmp, owner, tablen, degree, estimatePercent, noinvalidate);
+                FormIndexStats fts = new FormIndexStats(conntmp, owner, tablen, degree, estimatePercent, noinvalidate, sessionOptions);
                 
                 fts.StartPosition = FormStartPosition.CenterParent;
                 fts.Show(this);
@@ -568,7 +574,7 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
 
-                FormStatsColsDetailInfo fsih = new FormStatsColsDetailInfo(conntmp, owner, tablen);
+                FormStatsColsDetailInfo fsih = new FormStatsColsDetailInfo(conntmp, owner, tablen, sessionOptions);
                 fsih.StartPosition = FormStartPosition.CenterParent;
                 fsih.Show(this);
             }
@@ -582,7 +588,7 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
                 SetStatsValues();
-                FormSetTablePrefs fts = new FormSetTablePrefs(conntmp, owner, tablen);
+                FormSetTablePrefs fts = new FormSetTablePrefs(conntmp, owner, tablen, sessionOptions);
 
                 fts.StartPosition = FormStartPosition.CenterParent;
                 fts.Show(this);

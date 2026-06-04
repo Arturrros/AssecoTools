@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Windows.Forms;
-using System.ComponentModel;
+﻿using AssecoToolsOptions;
 using Oracle.ManagedDataAccess.Client;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
-using System.Xml.Linq;
+using System.IO;
+using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 
 namespace ClassSqlId
@@ -22,6 +23,8 @@ namespace ClassSqlId
     /// </summary>
     public partial class FormSqlId : Form
     {
+        SessionOptions sessionOptions;
+
         private OracleConnection Connection;
 
         private readonly BackgroundWorker worker;
@@ -46,7 +49,7 @@ namespace ClassSqlId
         /// Sql_id Info
         /// </summary>
         /// <param name="connectionString">connectionSrting - otwiera nowe połącznie do bazy</param>
-        public FormSqlId(OracleConnection Connection)
+        public FormSqlId(OracleConnection Connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
             
@@ -57,8 +60,13 @@ namespace ClassSqlId
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             cmdWorker = new OracleCommand();
             cmdWorker.Connection = Connection;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
-        public FormSqlId(OracleConnection Connection, string sqlId)
+        public FormSqlId(OracleConnection Connection, string sqlId, SessionOptions sessionOptions)
         {
             InitializeComponent();
 
@@ -70,10 +78,17 @@ namespace ClassSqlId
             cmdWorker = new OracleCommand();
             cmdWorker.Connection = Connection;
             toolStripTextBoxSqlId.Text = sqlId;
+            
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
+
             sqlid = sqlId;
             Go();
         }
-        public FormSqlId(OracleConnection Connection, string sqlId, Int32 sqlChildNumber)
+        public FormSqlId(OracleConnection Connection, string sqlId, Int32 sqlChildNumber, SessionOptions sessionOptions)
         {
             InitializeComponent();
 
@@ -85,6 +100,13 @@ namespace ClassSqlId
             cmdWorker = new OracleCommand();
             cmdWorker.Connection = Connection;
             toolStripTextBoxSqlId.Text = sqlId;
+
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
+
             sqlid = sqlId;
             sqlchildnumber = sqlChildNumber;
             Go();

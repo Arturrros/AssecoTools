@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AssecoToolsOptions;
+using ClassViewWindow;
+using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,13 +9,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using ClassViewWindow;
-using Oracle.ManagedDataAccess.Client;
 
 namespace ClassMonitor
 {
     public partial class FormMonitor01 : Form
     {
+        SessionOptions sessionOptions;
         public delegate void RefreshInfo_d(string buff);
         string SpecialQuery;
         string Title;
@@ -37,7 +39,7 @@ namespace ClassMonitor
         /// <param name="Connection"></param>
         /// <param name="Interval">Interval in seconds</param>
         /// <param name="width"></param>
-        public FormMonitor01( string wintype ,string title, string specialQuery, OracleConnection Connection, int Interval, int width)
+        public FormMonitor01( string wintype ,string title, string specialQuery, OracleConnection Connection, int Interval, int width, SessionOptions sessionOptions)
         {
             InitializeComponent();
             SpecialQuery = specialQuery;
@@ -60,6 +62,12 @@ namespace ClassMonitor
             toolStripComboBox1.SelectedIndex = 7;
             interval = Interval;
             this.Width = width;
+            
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         private void FormMonitor_Load(object sender, EventArgs e)

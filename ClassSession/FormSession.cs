@@ -35,7 +35,10 @@ namespace ClassSession
             toolStripComboBox2.SelectedIndex = 1;
             SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
             this.sessionOptions = sessionOptions;
-            toolStrip1.BackColor = sessionOptions.SessionColor;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
         public FormSession(OracleConnection Connection, int Sid, int Serial, SessionOptions sessionOptions)
         {
@@ -49,7 +52,10 @@ namespace ClassSession
             toolStripTextBox1.Text = sid.ToString();
             SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
             this.sessionOptions = sessionOptions;
-            toolStrip1.BackColor = sessionOptions.SessionColor;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
         public FormSession(OracleConnection Connection, int Sid, SessionOptions sessionOptions)
         {
@@ -62,7 +68,10 @@ namespace ClassSession
             toolStripTextBox1.Text = sid.ToString();
             SetTextFromConnectioNString(Connection, sessionOptions.userConnectionName);
             this.sessionOptions = sessionOptions;
-            toolStrip1.BackColor = sessionOptions.SessionColor;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
         private void SetTextFromConnectioNString(OracleConnection tmpConnection, string userConnectionName)
@@ -458,7 +467,7 @@ namespace ClassSession
 
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
-                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Object Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.OBJECT_MONITOR, sid, conntmp);
+                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Object Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.OBJECT_MONITOR, sid, conntmp,350,150, sessionOptions);
                 fm.Show(this);
             }
         }
@@ -471,7 +480,7 @@ namespace ClassSession
                 int serial = Convert.ToInt32(drv["serial#"]);
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
-                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Seesion Undo Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.SESSION_UNDO_BLOCK_USED, sid, conntmp);
+                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Seesion Undo Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.SESSION_UNDO_BLOCK_USED, sid, conntmp, sessionOptions);
                 fm.Show(this);
             }
         }
@@ -485,7 +494,7 @@ namespace ClassSession
 
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
-                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Wait Stats sid: " + sid.ToString(), ClassMonitor.SQLStrings.SESSION_WAIT_STATS, sid, conntmp, 400, 300);
+                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Wait Stats sid: " + sid.ToString(), ClassMonitor.SQLStrings.SESSION_WAIT_STATS, sid, conntmp, 400, 300, sessionOptions);
                 fm.Show(this);
             }
         }
@@ -503,7 +512,7 @@ namespace ClassSession
             string sqlid = drv["sql_id"].ToString();
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
-            ClassSqlId.FormSqlId fid = new ClassSqlId.FormSqlId(conntmp, sqlid);
+            ClassSqlId.FormSqlId fid = new ClassSqlId.FormSqlId(conntmp, sqlid, sessionOptions);
             fid.Show(this);
         }
 
@@ -620,7 +629,7 @@ namespace ClassSession
 
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
-            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("NORMAL", "Sql_id " + sqlid, sqlString, conntmp, 50, 400);
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("NORMAL", "Sql_id " + sqlid, sqlString, conntmp, 50, 400, sessionOptions);
             fm.Show(this);
         }
 
@@ -635,7 +644,7 @@ namespace ClassSession
 
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
-                ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Executes", ClassMonitor.SQLStrings.STATNAME_SID, conntmp, sid, statName);
+                ClassMonitor.FormMonitor fm = new ClassMonitor.FormMonitor("Executes", ClassMonitor.SQLStrings.STATNAME_SID, conntmp, sid, statName, sessionOptions);
                 fm.Show(this);
             }
         }

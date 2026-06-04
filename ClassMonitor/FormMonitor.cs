@@ -7,11 +7,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using AssecoToolsOptions;
 
 namespace ClassMonitor
 {
     public partial class FormMonitor : Form
     {
+        SessionOptions sessionOptions;
         public delegate void RefreshInfo_d(string buff);
         string SpecialQuery;
         string Title;
@@ -31,7 +33,7 @@ namespace ClassMonitor
 
         BackgroundWorker worker;
 
-        public FormMonitor(string title, string specialQuery, OracleConnection Connection)
+        public FormMonitor(string title, string specialQuery, OracleConnection Connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
             SpecialQuery = specialQuery;
@@ -49,8 +51,13 @@ namespace ClassMonitor
             toolStripComboBox1.SelectedIndex = 1;
             toolStripComboBox2.SelectedIndex = 1;
             sid = 0;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
-        public FormMonitor(string title, string specialQuery, OracleConnection Connection, Int32 Sid, string StatName)
+        public FormMonitor(string title, string specialQuery, OracleConnection Connection, Int32 Sid, string StatName, SessionOptions sessionOptions)
         {
             InitializeComponent();
             sid = Sid;
@@ -74,8 +81,11 @@ namespace ClassMonitor
             //Text = title;
             toolStripComboBox1.SelectedIndex = 1;
             toolStripComboBox2.SelectedIndex = 1;
-            
-            
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
 

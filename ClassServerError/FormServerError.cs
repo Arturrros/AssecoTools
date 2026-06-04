@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using ClassMonitor;
 using ClassViewWindow;
 using ClassSession;
+using AssecoToolsOptions;
 
 namespace ClassServerError
 {
     public partial class FormServerError : Form
     {
-
+        SessionOptions sessionOptions;
         public delegate void showTimeT_d(Int64 tim);
         public delegate void DisplayOdbcErrorCollection_d(OracleException exi);
         public delegate void ShowQueryInfo_d(Int32 sqlCnt, int rows_processed, string info);
@@ -31,7 +32,7 @@ namespace ClassServerError
         Int32 table_progres = 0;
         bool auto_stop = true;
 
-        public FormServerError(OracleConnection Connection, string SQLOnStart)
+        public FormServerError(OracleConnection Connection, string SQLOnStart, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -41,6 +42,13 @@ namespace ClassServerError
 
 
             richTextBox1.Text = SQLOnStart;
+            
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
+
             Run(SQLOnStart);
         }
 
@@ -308,7 +316,7 @@ namespace ClassServerError
 
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
-                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Object Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.OBJECT_MONITOR, sid, conntmp);
+                ClassMonitor.FormMonitorObj fm = new ClassMonitor.FormMonitorObj("Object Monitor sid: " + sid.ToString(), ClassMonitor.SQLStrings.OBJECT_MONITOR, sid, conntmp, sessionOptions);
                 fm.Show(this);
             }
         }

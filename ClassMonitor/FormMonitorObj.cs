@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AssecoToolsOptions;
+using ClassViewWindow;
+using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,13 +9,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using ClassViewWindow;
-using Oracle.ManagedDataAccess.Client;
 
 namespace ClassMonitor
 {
     public partial class FormMonitorObj : Form
     {
+        SessionOptions sessionOptions;
         public delegate void RefreshInfo_d(string buff);
         string SpecialQuery;
         string Title;
@@ -27,7 +29,7 @@ namespace ClassMonitor
         DataRowView drv;
         BackgroundWorker worker;
 
-        public FormMonitorObj(string title, string specialQuery,int sessionid, OracleConnection Connection)
+        public FormMonitorObj(string title, string specialQuery,int sessionid, OracleConnection Connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
             sid = sessionid;
@@ -46,9 +48,14 @@ namespace ClassMonitor
             Text = title;
             toolStripComboBox1.SelectedIndex = 4;
             //toolStripComboBox2.SelectedIndex = 1;
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
 
-        public FormMonitorObj(string title, string specialQuery, int sessionid, OracleConnection Connection, int width, int height)
+        public FormMonitorObj(string title, string specialQuery, int sessionid, OracleConnection Connection, int width, int height, SessionOptions sessionOptions)
         {
             InitializeComponent();
             sid = sessionid;
@@ -69,6 +76,12 @@ namespace ClassMonitor
             //toolStripComboBox2.SelectedIndex = 1;
             this.Width = width;
             this.Height = height;
+
+            this.sessionOptions = sessionOptions;
+            if (sessionOptions.isActiveSessionColor)
+            {
+                toolStrip1.BackColor = sessionOptions.SessionColor;
+            }
         }
         private void FormMonitor_Load(object sender, EventArgs e)
         {
