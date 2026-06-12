@@ -124,6 +124,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GTT.cs" />
     <Compile Include="StatsTime.cs" />
     <Compile Include="ClassExports.cs" />
     <Compile Include="ClassSchemaStatsClientSide.cs" />

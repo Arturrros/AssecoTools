@@ -396,11 +396,26 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
                 //FormTableStats fts = new FormTableStats(conntmp, schema, Convert.ToInt16(txtParallel.Text), Convert.ToInt16(txtEstimatePrc.Text), checkBox1.Checked,checkBox2.Checked);
-                FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions);
+                FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions, false);
                 fts.StartPosition = FormStartPosition.CenterScreen;
                 fts.Show(this);
             }
         }
+
+        private void gTTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (String schema in checkedListBox1.CheckedItems)
+            {
+                OracleConnection conntmp = (OracleConnection)Connection.Clone();
+                conntmp.Open();
+                //FormTableStats fts = new FormTableStats(conntmp, schema, Convert.ToInt16(txtParallel.Text), Convert.ToInt16(txtEstimatePrc.Text), checkBox1.Checked,checkBox2.Checked);
+                FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions, true);
+                fts.StartPosition = FormStartPosition.CenterScreen;
+                fts.Show(this);
+            }
+        }
+
+
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -802,7 +817,7 @@ namespace ClassSchemaStats
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
             //FormTableStats fts = new FormTableStats(conntmp, schema, Convert.ToInt16(txtParallel.Text), Convert.ToInt16(txtEstimatePrc.Text), checkBox1.Checked, checkBox2.Checked);
-            FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions);
+            FormTableStats fts = new FormTableStats(conntmp, schema, sessionOptions, false);
             fts.StartPosition = FormStartPosition.CenterScreen; 
             fts.Show(this);
         }
@@ -862,5 +877,7 @@ namespace ClassSchemaStats
                 gv.Show(this);
             }
         }
+
+       
     }
 }

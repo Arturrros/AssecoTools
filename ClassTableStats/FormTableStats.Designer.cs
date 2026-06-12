@@ -96,6 +96,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBarMain = new System.Windows.Forms.ProgressBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.contextMenuStripTemporary = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.temporaryTablesInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.checkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setSharedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setSESSIONDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.needDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gatherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,6 +123,7 @@
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.contextMenuStripTemporary.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -799,6 +811,86 @@
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // contextMenuStripTemporary
+            // 
+            this.contextMenuStripTemporary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.temporaryTablesInfoToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.checkToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.setSharedToolStripMenuItem,
+            this.setSESSIONDefaultToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.needDeleteToolStripMenuItem,
+            this.deleteTableStatsToolStripMenuItem,
+            this.gatherToolStripMenuItem});
+            this.contextMenuStripTemporary.Name = "contextMenuStripTemporary";
+            this.contextMenuStripTemporary.Size = new System.Drawing.Size(248, 198);
+            // 
+            // temporaryTablesInfoToolStripMenuItem
+            // 
+            this.temporaryTablesInfoToolStripMenuItem.Enabled = false;
+            this.temporaryTablesInfoToolStripMenuItem.Name = "temporaryTablesInfoToolStripMenuItem";
+            this.temporaryTablesInfoToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.temporaryTablesInfoToolStripMenuItem.Text = "Temporary Tables Info";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(204, 6);
+            // 
+            // checkToolStripMenuItem
+            // 
+            this.checkToolStripMenuItem.Name = "checkToolStripMenuItem";
+            this.checkToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.checkToolStripMenuItem.Text = "Check scope";
+            this.checkToolStripMenuItem.Click += new System.EventHandler(this.checkToolStripMenuItem_Click);
+            // 
+            // setSharedToolStripMenuItem
+            // 
+            this.setSharedToolStripMenuItem.Name = "setSharedToolStripMenuItem";
+            this.setSharedToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.setSharedToolStripMenuItem.Text = "Set to SHARED";
+            this.setSharedToolStripMenuItem.Click += new System.EventHandler(this.setSharedToolStripMenuItem_Click);
+            // 
+            // setSESSIONDefaultToolStripMenuItem
+            // 
+            this.setSESSIONDefaultToolStripMenuItem.Name = "setSESSIONDefaultToolStripMenuItem";
+            this.setSESSIONDefaultToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.setSESSIONDefaultToolStripMenuItem.Text = "Set to SESSION ( Default )";
+            this.setSESSIONDefaultToolStripMenuItem.Click += new System.EventHandler(this.setSESSIONDefaultToolStripMenuItem_Click);
+            // 
+            // deleteTableStatsToolStripMenuItem
+            // 
+            this.deleteTableStatsToolStripMenuItem.Name = "deleteTableStatsToolStripMenuItem";
+            this.deleteTableStatsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.deleteTableStatsToolStripMenuItem.Text = "Delete SHARED Table Stats";
+            this.deleteTableStatsToolStripMenuItem.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(210, 6);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(210, 6);
+            // 
+            // needDeleteToolStripMenuItem
+            // 
+            this.needDeleteToolStripMenuItem.Name = "needDeleteToolStripMenuItem";
+            this.needDeleteToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.needDeleteToolStripMenuItem.Text = "Check out if you need to remove";
+            this.needDeleteToolStripMenuItem.Click += new System.EventHandler(this.needDeleteToolStripMenuItem_Click);
+            // 
+            // gatherToolStripMenuItem
+            // 
+            this.gatherToolStripMenuItem.Name = "gatherToolStripMenuItem";
+            this.gatherToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.gatherToolStripMenuItem.Text = "Gather";
+            this.gatherToolStripMenuItem.Click += new System.EventHandler(this.gatherToolStripMenuItem_Click);
+            // 
             // FormTableStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,6 +931,7 @@
             this.groupBox12.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.contextMenuStripTemporary.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -912,5 +1005,16 @@
         private System.Windows.Forms.ToolStripMenuItem gatherStatisticAutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem unSelectAllToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTemporary;
+        private System.Windows.Forms.ToolStripMenuItem checkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem temporaryTablesInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem setSharedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setSESSIONDefaultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteTableStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem needDeleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gatherToolStripMenuItem;
     }
 }

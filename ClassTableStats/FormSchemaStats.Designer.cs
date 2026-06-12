@@ -39,6 +39,7 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.checkStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatTablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showTableTmieStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showWeakHYBRIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.createScriptTableLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,8 @@
             this.labelError = new System.Windows.Forms.Label();
             this.progressBarMain = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.showTableTmieStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -138,9 +140,11 @@
             this.unlockSchemaToolStripMenuItem,
             this.lockSchemaToolStripMenuItem,
             this.toolStripSeparator3,
-            this.refreshToolStripMenuItem});
+            this.refreshToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.gTTToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(217, 320);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(217, 326);
             // 
             // tablesToolStripMenuItem
             // 
@@ -188,6 +192,13 @@
             this.showStatTablesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.showStatTablesToolStripMenuItem.Text = "Show Table Stats";
             this.showStatTablesToolStripMenuItem.Click += new System.EventHandler(this.showStatTablesToolStripMenuItem_Click);
+            // 
+            // showTableTmieStatsToolStripMenuItem
+            // 
+            this.showTableTmieStatsToolStripMenuItem.Name = "showTableTmieStatsToolStripMenuItem";
+            this.showTableTmieStatsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.showTableTmieStatsToolStripMenuItem.Text = "Show Table Time Stats";
+            this.showTableTmieStatsToolStripMenuItem.Click += new System.EventHandler(this.showTableTmieStatsToolStripMenuItem_Click);
             // 
             // showWeakHYBRIDToolStripMenuItem
             // 
@@ -713,12 +724,17 @@
             this.progressBarMain.Step = 1;
             this.progressBarMain.TabIndex = 0;
             // 
-            // showTableTmieStatsToolStripMenuItem
+            // gTTToolStripMenuItem
             // 
-            this.showTableTmieStatsToolStripMenuItem.Name = "showTableTmieStatsToolStripMenuItem";
-            this.showTableTmieStatsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.showTableTmieStatsToolStripMenuItem.Text = "Show Table Time Stats";
-            this.showTableTmieStatsToolStripMenuItem.Click += new System.EventHandler(this.showTableTmieStatsToolStripMenuItem_Click);
+            this.gTTToolStripMenuItem.Name = "gTTToolStripMenuItem";
+            this.gTTToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.gTTToolStripMenuItem.Text = "Temporary Tables";
+            this.gTTToolStripMenuItem.Click += new System.EventHandler(this.gTTToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(213, 6);
             // 
             // FormSchemaStats
             // 
@@ -821,5 +837,7 @@
         private System.Windows.Forms.ToolStripMenuItem showWeakHYBRIDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showTablePrefsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showTableTmieStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gTTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
     }
 }

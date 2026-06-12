@@ -15,6 +15,7 @@ namespace ClassSchemaStats
     public partial class FormTableStats : Form
     {
         SessionOptions sessionOptions;
+        bool temporaryMode = false;
         public delegate void Worker_Info_d(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt);
         public delegate void Worker_InfoTxt_d(string buff);
 
@@ -43,10 +44,17 @@ namespace ClassSchemaStats
         Int32 execBufferCount = 0;
 
 //        public FormTableStats(OracleConnection Connection, string Owner,int Degree ,int EstimatePercent, bool NoInvalidate, bool Cascade)
-        public FormTableStats(OracleConnection Connection, string Owner, SessionOptions sessionOptions)
+        public FormTableStats(OracleConnection Connection, string Owner, SessionOptions sessionOptions, bool TemporaryMode)
         {
             InitializeComponent();
             this.Connection = Connection;
+            temporaryMode = TemporaryMode;
+
+            if (temporaryMode == false)
+                checkedListBox1.ContextMenuStrip = contextMenuStrip1;
+            else
+                checkedListBox1.ContextMenuStrip = contextMenuStripTemporary;
+
 
             CmdGatherTable = new OracleCommand();
             CmdGatherTable.Connection = Connection;
@@ -79,14 +87,14 @@ namespace ClassSchemaStats
 
         private void FormTableStats_Load(object sender, EventArgs e)
         {
-            ReloadTables(owner);
+            ReloadTables(owner, temporaryMode);
         }
 
-        private void ReloadTables(string Owner)
+        private void ReloadTables(string Owner, bool temporary)
         {
             OracleCommand cmd = new OracleCommand(ClassSchemaStats.SQLStrings.GET_TABLES, Connection);
             cmd.Parameters.Add("owner", OracleDbType.Varchar2).Value = Owner;
-            cmd.Parameters.Add("temporary", OracleDbType.Varchar2).Value = 'N';
+            cmd.Parameters.Add("temporary", OracleDbType.Varchar2).Value = (temporary == true ? 'Y' : 'N');
             
             OracleDataReader reader = cmd.ExecuteReader();
 
@@ -376,7 +384,7 @@ namespace ClassSchemaStats
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ReloadTables(owner);
+            ReloadTables(owner, temporaryMode);
         }
 
         private void selectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -593,11 +601,88 @@ namespace ClassSchemaStats
                 fts.StartPosition = FormStartPosition.CenterParent;
                 fts.Show(this);
             }
+        }
 
+        #region Temporary Tables Operations - GTT
 
+        private void checkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                richTextBox1.AppendText (tableName + " Level: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+            }
+        }
 
+        private void setSharedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                richTextBox1.AppendText(tableName + " Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                richTextBox1.AppendText("Set " + tableName + " Level to SHARED: Status>>" + new GTT(Connection, owner, tableName).SetGttLevel("SHARED").ToString() + "\n");
+                richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+            }
+        }
+
+        private void setSESSIONDefaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                richTextBox1.AppendText(tableName + " Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                richTextBox1.AppendText("Set " + tableName + " Level to SHARED: Status>>" + new GTT(Connection, owner, tableName).SetGttLevel("SESSION").ToString() + "\n");
+                richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+            }
+        }
+
+        private void deleteTableStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                bool ret = new GTT(Connection, owner, tableName).DeleteTableSharedStats();
+                if (ret)
+                    richTextBox1.AppendText("Delete stats on " + tableName + " has been executed, and the scope has been set to SESSION" + "\n");
+                else
+                    richTextBox1.AppendText("Delete stats on " + tableName + " it isn’t necessary" + "\n");
+            }
+        }
+
+        private void needDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                bool ret = new GTT(Connection, owner, tableName).needDeleteSharedStats();
+                if (ret)
+                    richTextBox1.AppendText("Table " + tableName + " >>> YES <<< The statistics need to be deleted \n");
+                else
+                    richTextBox1.AppendText("Table " + tableName + " >>> NO <<< There's no need to delete the statistics" + "\n");
+            }
         }
 
 
+        #endregion
+
+        private void gatherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+                GTT gt = new GTT(Connection, owner, tableName);
+                if (gt.CheckGttScope() == "SHARED")
+                {
+                    gt.GatherTableStats();
+                    richTextBox1.AppendText("Statistics...Done.\n");
+                    richTextBox1.AppendText("Do you really need SHARED stats on temporary???");
+                }
+                else
+                {
+                    richTextBox1.AppendText("Table scope is SESSION. There is no need to gather statistics at this stage\n");
+                    richTextBox1.AppendText("If you need statistics for a temporary table, first set the SHARED scope");
+                }
+            }
+        }
     }
 }
