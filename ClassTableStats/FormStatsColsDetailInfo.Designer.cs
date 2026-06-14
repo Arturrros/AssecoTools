@@ -592,7 +592,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 18;
             this.dataGridView1.RowTemplate.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(768, 378);
+            this.dataGridView1.Size = new System.Drawing.Size(892, 442);
             this.dataGridView1.TabIndex = 0;
             // 
             // tabControl1
@@ -601,10 +601,11 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(351, 48);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(290, 25);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(782, 410);
+            this.tabControl1.Size = new System.Drawing.Size(906, 474);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -613,7 +614,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(774, 384);
+            this.tabPage1.Size = new System.Drawing.Size(898, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Column Info";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -624,7 +625,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(898, 473);
+            this.tabPage2.Size = new System.Drawing.Size(774, 384);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Table History";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -638,7 +639,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(892, 467);
+            this.dataGridView2.Size = new System.Drawing.Size(768, 378);
             this.dataGridView2.TabIndex = 0;
             // 
             // tabPage3
@@ -649,7 +650,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(898, 473);
+            this.tabPage3.Size = new System.Drawing.Size(774, 384);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Index info";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -660,7 +661,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 239);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(892, 231);
+            this.panel2.Size = new System.Drawing.Size(768, 142);
             this.panel2.TabIndex = 2;
             // 
             // groupBox6
@@ -670,7 +671,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(0, 0);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(892, 231);
+            this.groupBox6.Size = new System.Drawing.Size(768, 142);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Index Usage";
@@ -688,7 +689,7 @@
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.RowHeadersVisible = false;
             this.dataGridView5.RowTemplate.Height = 18;
-            this.dataGridView5.Size = new System.Drawing.Size(886, 193);
+            this.dataGridView5.Size = new System.Drawing.Size(762, 104);
             this.dataGridView5.TabIndex = 0;
             // 
             // panel3
@@ -697,7 +698,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 16);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(886, 19);
+            this.panel3.Size = new System.Drawing.Size(762, 19);
             this.panel3.TabIndex = 1;
             // 
             // label35
@@ -719,7 +720,7 @@
             this.splitter2.Location = new System.Drawing.Point(3, 233);
             this.splitter2.Margin = new System.Windows.Forms.Padding(6);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(892, 6);
+            this.splitter2.Size = new System.Drawing.Size(768, 6);
             this.splitter2.TabIndex = 1;
             this.splitter2.TabStop = false;
             // 
@@ -729,7 +730,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(892, 230);
+            this.panel1.Size = new System.Drawing.Size(768, 230);
             this.panel1.TabIndex = 0;
             // 
             // groupBox5
@@ -739,7 +740,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(0, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(892, 230);
+            this.groupBox5.Size = new System.Drawing.Size(768, 230);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Index Statistic";
@@ -767,7 +768,7 @@
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.RowTemplate.Height = 18;
             this.dataGridView4.RowTemplate.ReadOnly = true;
-            this.dataGridView4.Size = new System.Drawing.Size(886, 211);
+            this.dataGridView4.Size = new System.Drawing.Size(762, 211);
             this.dataGridView4.TabIndex = 0;
             this.dataGridView4.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView4_CellPainting);
             // 
@@ -776,7 +777,7 @@
             this.tabPage4.Controls.Add(this.dataGridView6);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(898, 473);
+            this.tabPage4.Size = new System.Drawing.Size(774, 384);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Time Stats Info (only local file)";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -795,7 +796,7 @@
             this.dataGridView6.RowHeadersVisible = false;
             this.dataGridView6.RowTemplate.Height = 18;
             this.dataGridView6.RowTemplate.ReadOnly = true;
-            this.dataGridView6.Size = new System.Drawing.Size(898, 473);
+            this.dataGridView6.Size = new System.Drawing.Size(774, 384);
             this.dataGridView6.TabIndex = 1;
             // 
             // errorProvider1
