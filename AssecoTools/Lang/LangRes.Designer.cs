@@ -19,7 +19,7 @@ namespace AssecoTools.Lang {
     // przez narzędzie, takie jak ResGen lub Visual Studio.
     // Aby dodać lub usunąć składową, edytuj plik ResX, a następnie ponownie uruchom narzędzie ResGen
     // z opcją /str lub ponownie utwórz projekt VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class LangRes {
@@ -705,6 +705,15 @@ namespace AssecoTools.Lang {
         internal static string FormSchemaStats_unlockSchemaToolStripMenuItem_Text {
             get {
                 return ResourceManager.GetString("FormSchemaStats_unlockSchemaToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tables.
+        /// </summary>
+        internal static string FormTableStats_TabPage1_Text {
+            get {
+                return ResourceManager.GetString("FormTableStats_TabPage1_Text", resourceCulture);
             }
         }
     }

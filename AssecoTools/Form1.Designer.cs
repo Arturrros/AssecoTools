@@ -214,14 +214,14 @@
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // disconnectToolStripMenuItem
             // 
             this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
@@ -289,14 +289,14 @@
             // eNToolStripMenuItem
             // 
             this.eNToolStripMenuItem.Name = "eNToolStripMenuItem";
-            this.eNToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.eNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eNToolStripMenuItem.Text = "EN";
             this.eNToolStripMenuItem.Click += new System.EventHandler(this.eNToolStripMenuItem_Click);
             // 
             // pLToolStripMenuItem
             // 
             this.pLToolStripMenuItem.Name = "pLToolStripMenuItem";
-            this.pLToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.pLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pLToolStripMenuItem.Text = "PL";
             this.pLToolStripMenuItem.Click += new System.EventHandler(this.pLToolStripMenuItem_Click);
             // 
@@ -597,7 +597,7 @@
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "jak wyczyści";
+            this.Text = "AssecoTools";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);

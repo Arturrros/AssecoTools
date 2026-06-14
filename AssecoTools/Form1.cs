@@ -34,6 +34,7 @@ namespace AssecoTools
 
         public Form1(string[] Args)
         {
+            sessionOptions = new SessionOptions();
             try
             {
                 InitializeComponent();
@@ -62,6 +63,7 @@ namespace AssecoTools
                 }
                  
                 culture = new CultureInfo(AssecoTools.Default.CultureInfo);
+                
                 InitializeLanguage(culture);
             }
             catch (Exception ex)
@@ -77,6 +79,9 @@ namespace AssecoTools
         {
             Assembly assembly = Assembly.Load("AssecoTools");
             resman = new ResourceManager("AssecoTools.Lang.LangRes", assembly);
+
+            sessionOptions.CI = culture;
+
             btnGain.Text = resman.GetString("Form1_btnGain_Text", ci);
             btnSessions.Text = resman.GetString("Form1_btnSessions_Text", ci);
             btnLocks.Text = resman.GetString("Form1_btnLocks_Text", ci);
@@ -127,16 +132,16 @@ namespace AssecoTools
                 groupBox1.Enabled = true;
                 groupBox2.Enabled = true;
                 groupBox3.Enabled = true;
-                
+                //this.menuStrip1.BackColor = sessionOptions.SessionColor;
             }
             else
             {
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
                 groupBox3.Enabled = false;
-                sessionOptions.isActiveSessionColor = false;
-                sessionOptions.SessionColor = SystemColors.Control;
-                this.menuStrip1.BackColor = SystemColors.Control;
+                //sessionOptions.isActiveSessionColor = false;
+                //sessionOptions.SessionColor = SystemColors.Control;
+                //this.menuStrip1.BackColor = SystemColors.Control;
 
             }
 
@@ -202,6 +207,9 @@ namespace AssecoTools
         private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConnectionMain.Close();
+            sessionOptions.isActiveSessionColor = false;
+            sessionOptions.SessionColor = SystemColors.Control;
+            this.menuStrip1.BackColor = SystemColors.Control;
         }
 
         private void btnSessions_Click(object sender, EventArgs e)

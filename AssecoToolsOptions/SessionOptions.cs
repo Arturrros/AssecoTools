@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace AssecoToolsOptions
 {
@@ -27,6 +28,12 @@ namespace AssecoToolsOptions
         /// Is color active?
         /// </summary>
         public bool isActiveSessionColor { get; set; } = false;
+
+        /// <summary>
+        /// Culture info - language
+        /// </summary>
+        public CultureInfo CI { get; set; }
+
         //private SessionOptions opts;
         public SessionOptions() { }
         //public SessionOptions Opts

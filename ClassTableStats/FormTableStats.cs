@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -15,6 +18,8 @@ namespace ClassSchemaStats
     public partial class FormTableStats : Form
     {
         SessionOptions sessionOptions;
+        Assembly assembly;
+        ResourceManager resman;
         bool temporaryMode = false;
         public delegate void Worker_Info_d(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt);
         public delegate void Worker_InfoTxt_d(string buff);
@@ -43,10 +48,12 @@ namespace ClassSchemaStats
         String execBuffer = String.Empty;
         Int32 execBufferCount = 0;
 
-//        public FormTableStats(OracleConnection Connection, string Owner,int Degree ,int EstimatePercent, bool NoInvalidate, bool Cascade)
         public FormTableStats(OracleConnection Connection, string Owner, SessionOptions sessionOptions, bool TemporaryMode)
         {
             InitializeComponent();
+            this.sessionOptions = sessionOptions;
+            InitializeLanguage(sessionOptions.CI);
+
             this.Connection = Connection;
             temporaryMode = TemporaryMode;
 
@@ -72,15 +79,27 @@ namespace ClassSchemaStats
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             worker.ProgressChanged += worker_ProgressChanged;
-            this.sessionOptions = sessionOptions;
+            
             if (sessionOptions.isActiveSessionColor)
             {
                 toolStrip1.BackColor = sessionOptions.SessionColor;
             }
 
+            
         }
+        
+        void InitializeLanguage(CultureInfo ci)
+        {
+            assembly = Assembly.Load("AssecoTools");
+            resman = new ResourceManager("AssecoTools.Lang.LangRes", assembly);
 
-        void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+            tabPage1.Text = resman.GetString("FormTableStats_TabPage1_Text", ci);
+
+
+
+
+        }
+            void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarMain.Value = e.ProgressPercentage;
         }
@@ -603,6 +622,12 @@ namespace ClassSchemaStats
             }
         }
 
+
+        //
+        // GTT Stats Region
+        //
+
+
         #region Temporary Tables Operations - GTT
 
         private void checkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -662,9 +687,6 @@ namespace ClassSchemaStats
             }
         }
 
-
-        #endregion
-
         private void gatherToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
@@ -680,9 +702,13 @@ namespace ClassSchemaStats
                 else
                 {
                     richTextBox1.AppendText("Table scope is SESSION. There is no need to gather statistics at this stage\n");
-                    richTextBox1.AppendText("If you need statistics for a temporary table, first set the SHARED scope");
+                    richTextBox1.AppendText("If you need statistics on a temporary table, first set the SHARED scope, but remember... this is old style from Oracle 11 ");
                 }
             }
         }
+
+        #endregion
+
+       
     }
 }

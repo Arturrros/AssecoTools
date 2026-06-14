@@ -349,4 +349,7 @@ i nie mozna go modyfikować bo jest np w użyciu przez inną sesję</value>
   <data name="Form1_button_GlobalUndo_Text" xml:space="preserve">
     <value>Global UNDO Summary</value>
   </data>
+  <data name="FormTableStats_TabPage1_Text" xml:space="preserve">
+    <value>Tabele</value>
+  </data>
 </root>
