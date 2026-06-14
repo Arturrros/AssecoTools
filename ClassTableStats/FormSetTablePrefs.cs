@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using AssecoToolsOptions;
 using ClassTableStats;
 using Oracle.ManagedDataAccess.Client;
-using AssecoToolsOptions;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ClassSchemaStats
 {
@@ -49,9 +43,9 @@ namespace ClassSchemaStats
         {
             GetTablePrefs();
             GetaTableActivePrefs();
-           
-            bs = new BindingSource(dtPref,null);
-            bs.CurrentChanged += Bs_CurrentChanged  ;
+
+            bs = new BindingSource(dtPref, null);
+            bs.CurrentChanged += Bs_CurrentChanged;
             dataGridView1.DataSource = bs;
 
             textBox1.DataBindings.Add("Text", bs, "val");
@@ -105,7 +99,7 @@ namespace ClassSchemaStats
                 string opts = row.Cells["OPTS"].Value.ToString();
                 foreach (DataRow dr in dtActivePref.Rows)
                 {
-                    if ( opts == dr[0].ToString())
+                    if (opts == dr[0].ToString())
                     {
                         dataGridView1.Rows[row.Index].Cells[0].Style.BackColor = Color.LightCyan;
                         continue;
@@ -245,28 +239,28 @@ namespace ClassSchemaStats
                         "                            tabname => '<TABLE_NAME>',\n" +
                         "                            pname   => 'STALE_PERCENT') as val\n" +
                         "  from dual\n";
-                        //"union all\n" +
-                        //"select 'STAT_CATEGORY' as opt,\n" +
-                        //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
-                        //"                            tabname => '<TABLE_NAME>',\n" +
-                        //"                            pname   => 'STAT_CATEGORY') as val\n" +
-                        //"  from dual\n" +
-                        //"union all\n" +
-                        //"select 'TABLE_CACHED_BLOCKS' as opt,\n" +
-                        //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
-                        //"                            tabname => '<TABLE_NAME>',\n" +
-                        //"                            pname   => 'TABLE_CACHED_BLOCKS') as val\n" +
-                        //"  from dual\n" +
-                        //"union all\n" +
-                        //"select 'WAIT_TIME_TO_UPDATE_STATS' as opt,\n" +
-                        //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
-                        //"                            tabname => '<TABLE_NAME>',\n" +
-                        //"                            pname   => 'WAIT_TIME_TO_UPDATE_STATS') as val\n" +
-                        //"  from dual";
+            //"union all\n" +
+            //"select 'STAT_CATEGORY' as opt,\n" +
+            //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
+            //"                            tabname => '<TABLE_NAME>',\n" +
+            //"                            pname   => 'STAT_CATEGORY') as val\n" +
+            //"  from dual\n" +
+            //"union all\n" +
+            //"select 'TABLE_CACHED_BLOCKS' as opt,\n" +
+            //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
+            //"                            tabname => '<TABLE_NAME>',\n" +
+            //"                            pname   => 'TABLE_CACHED_BLOCKS') as val\n" +
+            //"  from dual\n" +
+            //"union all\n" +
+            //"select 'WAIT_TIME_TO_UPDATE_STATS' as opt,\n" +
+            //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
+            //"                            tabname => '<TABLE_NAME>',\n" +
+            //"                            pname   => 'WAIT_TIME_TO_UPDATE_STATS') as val\n" +
+            //"  from dual";
 
             string sqlStringReplaced = sqlString.Replace("<OWNER>", owner).Replace("<TABLE_NAME>", tableName);
             cmdPref = new OracleCommand(sqlStringReplaced, connection);
-            
+
 
             try
             {
@@ -280,7 +274,7 @@ namespace ClassSchemaStats
 
             }
         }
-        private void  GetaTableActivePrefs()
+        private void GetaTableActivePrefs()
         {
             string sqlString = "select preference_name, preference_value\n" +
                                 "  from DBA_TAB_STAT_PREFS\n" +
@@ -303,7 +297,7 @@ namespace ClassSchemaStats
             }
         }
 
-       
+
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
@@ -479,16 +473,16 @@ namespace ClassSchemaStats
             "  DBMS_STATS.SET_TABLE_PREFS(ownname => '" + owner + "',\n" +
             "                             Tabname => '" + tableName + "',\n" +
             "                             pname   => '" + drv["opts"] + "',\n" +
-            "                             pvalue  => '" + textBox1.Text +"');\n" +
+            "                             pvalue  => '" + textBox1.Text + "');\n" +
             "end;";
 
             try
             {
-                OracleCommand tmpcmd = new OracleCommand(sqlString,connection);
+                OracleCommand tmpcmd = new OracleCommand(sqlString, connection);
                 tmpcmd.ExecuteNonQuery();
-                ClassLog.Log.Add(ClassLog.Log.LogLevel.SETTINGSCHANGED, "Zmieniono parametr dla tabeli " + owner + "." + tableName + ": "+ drv["opts"].ToString() + " na wartość " + textBox1.Text);
+                ClassLog.Log.Add(ClassLog.Log.LogLevel.SETTINGSCHANGED, "Zmieniono parametr dla tabeli " + owner + "." + tableName + ": " + drv["opts"].ToString() + " na wartość " + textBox1.Text);
             }
-            catch(OracleException exx) 
+            catch (OracleException exx)
             {
                 MessageBox.Show(exx.Message.ToString());
             }
@@ -580,11 +574,16 @@ namespace ClassSchemaStats
             OracleConnection conntmp = (OracleConnection)connection.Clone();
             conntmp.Open();
 
-            FormSchemaStatsInternalTable fssit = new FormSchemaStatsInternalTable(conntmp,owner, tableName, textBox1.Text, sessionOptions);
+            FormSchemaStatsInternalTable fssit = new FormSchemaStatsInternalTable(conntmp, owner, tableName, textBox1.Text, sessionOptions);
             fssit.StartPosition = FormStartPosition.CenterParent;
-            fssit.Show(this);
 
-            
+            //if (fssit.ShowDialog(this) == DialogResult.OK)
+            fssit.ShowDialog(this);
+            {
+                GetTablePrefs();
+                GetaTableActivePrefs();
+                GColor();
+            }
         }
 
         private void FormSetTablePrefs_FormClosing(object sender, FormClosingEventArgs e)

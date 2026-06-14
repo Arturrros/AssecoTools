@@ -91,10 +91,13 @@ namespace ClassTableStats
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            AddColumn();
+        }
+
+        private void AddColumn()
+        {
             string tmpMethod = textBox1.Text;
-            string sectionUpdate = " for columns size " + columnValue.ToString() + " " + columnName ;
-            
+            string sectionUpdate = " FOR COLUMNS SIZE " + columnValue.ToString() + " " + columnName;
             textBox1.Text = tmpMethod + sectionUpdate;
         }
 
@@ -106,6 +109,65 @@ namespace ClassTableStats
         private void buttonCopy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(textBox1.Text);
+        }
+
+        private void SetMethodOpt(string MetOpt)
+        {
+            
+            string sqlString = "begin\n" +
+            "  DBMS_STATS.SET_TABLE_PREFS(ownname => '" + owner + "',\n" +
+            "                             Tabname => '" + tableName + "',\n" +
+            "                             pname   => '" + "METHOD_OPT" + "',\n" +
+            "                             pvalue  => '" + MetOpt + "');\n" +
+            "end;";
+
+            try
+            {
+                OracleCommand tmpcmd = new OracleCommand(sqlString, connection);
+                tmpcmd.ExecuteNonQuery();
+                //ClassLog.Log.Add(ClassLog.Log.LogLevel.SETTINGSCHANGED, "Zmieniono parametr dla tabeli " + owner + "." + tableName + ": " + methodOpt + " na wartość " + textBox1.Text);
+            }
+            catch (OracleException exx)
+            {
+                MessageBox.Show(exx.Message.ToString());
+            }
+        }
+
+        private string GetaTableMethodOptValue()
+        {
+            OracleCommand cmdActivePref = new OracleCommand();
+            string sqlString = "select preference_value\n" +
+                                "  from DBA_TAB_STAT_PREFS\n" +
+                                " where owner = :owner\n" +
+                                "   and table_name = :table_name\n" +
+                                "   and preference_name = 'METHOD_OPT'";
+
+            cmdActivePref = new OracleCommand(sqlString, connection);
+            cmdActivePref.Parameters.Clear();
+            cmdActivePref.Parameters.Add("owner", owner);
+            cmdActivePref.Parameters.Add("table_name", tableName);
+
+            try
+            {
+                string methodOpt = cmdActivePref.ExecuteScalar().ToString();
+                textBox1.Text = methodOpt;
+                return methodOpt;
+            }
+            catch (OracleException ex)
+            {
+                return string.Empty;
+            }
+        }
+
+        private void setTo1AndApplyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataRowView drv = (DataRowView)bs.Current;
+            string cName = drv[0].ToString();
+
+            AddColumn();
+            SetMethodOpt(textBox1.Text);
+            GetaTableCols();
+            //MessageBox.Show(cName);
         }
     }
 }
