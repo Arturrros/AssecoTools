@@ -833,7 +833,7 @@
             this.lockTableStatsToolStripMenuItem,
             this.deleteTableStatsToolStripMenuItem1});
             this.contextMenuStripTemporary.Name = "contextMenuStripTemporary";
-            this.contextMenuStripTemporary.Size = new System.Drawing.Size(248, 270);
+            this.contextMenuStripTemporary.Size = new System.Drawing.Size(248, 248);
             // 
             // temporaryTablesInfoToolStripMenuItem
             // 
