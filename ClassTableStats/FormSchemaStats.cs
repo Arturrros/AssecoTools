@@ -109,6 +109,7 @@ namespace ClassSchemaStats
             labelObject.Text = resman.GetString("FormSchemaStats_labelObject_Text", ci);
             label1.Text = resman.GetString("FormSchemaStats_label1_Text", ci);
             createScriptToolStripMenuItem.Text = resman.GetString("FormSchemaStats_createScriptToolStripMenuItem_Text", ci);
+            gTTToolStripMenuItem.Text = resman.GetString("FormSchemaStats_gTTToolStripMenuItem_Text", ci);
         }
         
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

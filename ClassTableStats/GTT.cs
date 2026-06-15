@@ -46,8 +46,12 @@ namespace ClassSchemaStats
           
             return tabLevel;
         }
-
-        public bool SetGttLevel(string GttLevel)
+        /// <summary>
+        /// Ustawianie poziomu statystyk dla tabeli tymczasowej
+        /// </summary>
+        /// <param name="GttLevel"></param>
+        /// <returns></returns>
+        public void SetGttLevel(string GttLevel)
         {
 
             OracleCommand cmdSetPrefs = new OracleCommand("DBMS_STATS.SET_TABLE_PREFS", connection);
@@ -61,7 +65,6 @@ namespace ClassSchemaStats
             try
             {
                 cmdSetPrefs.ExecuteNonQuery();
-                return true;
             }
             catch (OracleException exc)
             {
@@ -98,7 +101,9 @@ namespace ClassSchemaStats
             }
             else { }  
         }
-
+        /// <summary>
+        /// Kasowanie statystyk - bez warunkow
+        /// </summary>
         public void DeleteTableStats()
         {
 

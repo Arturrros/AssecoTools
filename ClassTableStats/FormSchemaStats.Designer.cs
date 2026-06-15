@@ -49,6 +49,8 @@
             this.lockSchemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.gTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -94,8 +96,6 @@
             this.labelError = new System.Windows.Forms.Label();
             this.progressBarMain = new System.Windows.Forms.ProgressBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.gTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,6 +125,7 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tablesToolStripMenuItem,
+            this.gTTToolStripMenuItem,
             this.gatherStatisticsToolStripMenuItem,
             this.toolStripSeparator4,
             this.showTablePrefsToolStripMenuItem,
@@ -141,8 +142,7 @@
             this.lockSchemaToolStripMenuItem,
             this.toolStripSeparator3,
             this.refreshToolStripMenuItem,
-            this.toolStripSeparator9,
-            this.gTTToolStripMenuItem});
+            this.toolStripSeparator9});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(217, 326);
             // 
@@ -258,6 +258,18 @@
             this.refreshToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(213, 6);
+            // 
+            // gTTToolStripMenuItem
+            // 
+            this.gTTToolStripMenuItem.Name = "gTTToolStripMenuItem";
+            this.gTTToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.gTTToolStripMenuItem.Text = "Temporary Tables";
+            this.gTTToolStripMenuItem.Click += new System.EventHandler(this.gTTToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -723,18 +735,6 @@
             this.progressBarMain.Size = new System.Drawing.Size(556, 38);
             this.progressBarMain.Step = 1;
             this.progressBarMain.TabIndex = 0;
-            // 
-            // gTTToolStripMenuItem
-            // 
-            this.gTTToolStripMenuItem.Name = "gTTToolStripMenuItem";
-            this.gTTToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.gTTToolStripMenuItem.Text = "Temporary Tables";
-            this.gTTToolStripMenuItem.Click += new System.EventHandler(this.gTTToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(213, 6);
             // 
             // FormSchemaStats
             // 

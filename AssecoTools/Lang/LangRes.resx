@@ -336,4 +336,7 @@
   <data name="FormTableStats_TabPage1_Text" xml:space="preserve">
     <value>Tables</value>
   </data>
+  <data name="FormSchemaStats_gTTToolStripMenuItem_Text" xml:space="preserve">
+    <value>Temporary Tables</value>
+  </data>
 </root>

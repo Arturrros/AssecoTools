@@ -448,6 +448,15 @@ namespace AssecoTools.Lang {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Temporary Tables.
+        /// </summary>
+        internal static string FormSchemaStats_gTTToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("FormSchemaStats_gTTToolStripMenuItem_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Object.
         /// </summary>
         internal static string FormSchemaStats_label1_Text {

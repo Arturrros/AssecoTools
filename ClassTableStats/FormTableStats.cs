@@ -56,6 +56,11 @@ namespace ClassSchemaStats
 
             this.Connection = Connection;
             temporaryMode = TemporaryMode;
+            if (temporaryMode) 
+            {
+                groupBox4.Enabled = false;
+            }
+            
 
             if (temporaryMode == false)
                 checkedListBox1.ContextMenuStrip = contextMenuStrip1;
@@ -645,8 +650,16 @@ namespace ClassSchemaStats
             foreach (String tableName in checkedListBox1.CheckedItems)
             {
                 richTextBox1.AppendText(tableName + " Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
-                richTextBox1.AppendText("Set " + tableName + " Level to SHARED: Status>>" + new GTT(Connection, owner, tableName).SetGttLevel("SHARED").ToString() + "\n");
-                richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                try
+                {
+                    new GTT(Connection, owner, tableName).SetGttLevel("SHARED");
+                    richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
+                
             }
         }
 
@@ -656,8 +669,16 @@ namespace ClassSchemaStats
             foreach (String tableName in checkedListBox1.CheckedItems)
             {
                 richTextBox1.AppendText(tableName + " Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
-                richTextBox1.AppendText("Set " + tableName + " Level to SHARED: Status>>" + new GTT(Connection, owner, tableName).SetGttLevel("SESSION").ToString() + "\n");
-                richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                try
+                {
+                    new GTT(Connection, owner, tableName).SetGttLevel("SESSION");
+                    richTextBox1.AppendText("New Scope: " + new GTT(Connection, owner, tableName).CheckGttScope() + "\n");
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
+                
             }
         }
 
@@ -674,7 +695,9 @@ namespace ClassSchemaStats
                 }
                 catch (Exception exc) 
                 {
-                    richTextBox1.AppendText("Delete stats on " + tableName + " it isn’t necessary" + "\n");
+                    //throw exc;
+                    label1.Text = exc.Message.ToString();
+                    //richTextBox1.AppendText("Delete stats on " + tableName + " it isn’t necessary" + "\n");
                 }
             }
         }

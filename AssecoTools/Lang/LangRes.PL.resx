@@ -352,4 +352,7 @@ i nie mozna go modyfikować bo jest np w użyciu przez inną sesję</value>
   <data name="FormTableStats_TabPage1_Text" xml:space="preserve">
     <value>Tabele</value>
   </data>
+  <data name="FormSchemaStats_gTTToolStripMenuItem_Text" xml:space="preserve">
+    <value>Tabele tymczasowe</value>
+  </data>
 </root>
