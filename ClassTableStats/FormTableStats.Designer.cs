@@ -100,13 +100,17 @@
             this.temporaryTablesInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.checkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.setSharedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setSESSIONDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.needDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gatherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.unlockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTableStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -823,21 +827,25 @@
             this.toolStripSeparator8,
             this.needDeleteToolStripMenuItem,
             this.deleteTableStatsToolStripMenuItem,
-            this.gatherToolStripMenuItem});
+            this.gatherToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.unlockTableStatsToolStripMenuItem,
+            this.lockTableStatsToolStripMenuItem,
+            this.deleteTableStatsToolStripMenuItem1});
             this.contextMenuStripTemporary.Name = "contextMenuStripTemporary";
-            this.contextMenuStripTemporary.Size = new System.Drawing.Size(248, 198);
+            this.contextMenuStripTemporary.Size = new System.Drawing.Size(248, 270);
             // 
             // temporaryTablesInfoToolStripMenuItem
             // 
             this.temporaryTablesInfoToolStripMenuItem.Enabled = false;
             this.temporaryTablesInfoToolStripMenuItem.Name = "temporaryTablesInfoToolStripMenuItem";
-            this.temporaryTablesInfoToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.temporaryTablesInfoToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.temporaryTablesInfoToolStripMenuItem.Text = "Temporary Tables Info";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(204, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(244, 6);
             // 
             // checkToolStripMenuItem
             // 
@@ -846,36 +854,29 @@
             this.checkToolStripMenuItem.Text = "Check scope";
             this.checkToolStripMenuItem.Click += new System.EventHandler(this.checkToolStripMenuItem_Click);
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(244, 6);
+            // 
             // setSharedToolStripMenuItem
             // 
             this.setSharedToolStripMenuItem.Name = "setSharedToolStripMenuItem";
-            this.setSharedToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.setSharedToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.setSharedToolStripMenuItem.Text = "Set to SHARED";
             this.setSharedToolStripMenuItem.Click += new System.EventHandler(this.setSharedToolStripMenuItem_Click);
             // 
             // setSESSIONDefaultToolStripMenuItem
             // 
             this.setSESSIONDefaultToolStripMenuItem.Name = "setSESSIONDefaultToolStripMenuItem";
-            this.setSESSIONDefaultToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.setSESSIONDefaultToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.setSESSIONDefaultToolStripMenuItem.Text = "Set to SESSION ( Default )";
             this.setSESSIONDefaultToolStripMenuItem.Click += new System.EventHandler(this.setSESSIONDefaultToolStripMenuItem_Click);
-            // 
-            // deleteTableStatsToolStripMenuItem
-            // 
-            this.deleteTableStatsToolStripMenuItem.Name = "deleteTableStatsToolStripMenuItem";
-            this.deleteTableStatsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.deleteTableStatsToolStripMenuItem.Text = "Delete SHARED Table Stats";
-            this.deleteTableStatsToolStripMenuItem.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(210, 6);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(210, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(244, 6);
             // 
             // needDeleteToolStripMenuItem
             // 
@@ -884,12 +885,45 @@
             this.needDeleteToolStripMenuItem.Text = "Check out if you need to remove";
             this.needDeleteToolStripMenuItem.Click += new System.EventHandler(this.needDeleteToolStripMenuItem_Click);
             // 
+            // deleteTableStatsToolStripMenuItem
+            // 
+            this.deleteTableStatsToolStripMenuItem.Name = "deleteTableStatsToolStripMenuItem";
+            this.deleteTableStatsToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.deleteTableStatsToolStripMenuItem.Text = "Delete SHARED Table Stats";
+            this.deleteTableStatsToolStripMenuItem.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem_Click);
+            // 
             // gatherToolStripMenuItem
             // 
             this.gatherToolStripMenuItem.Name = "gatherToolStripMenuItem";
             this.gatherToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.gatherToolStripMenuItem.Text = "Gather";
             this.gatherToolStripMenuItem.Click += new System.EventHandler(this.gatherToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(244, 6);
+            // 
+            // unlockTableStatsToolStripMenuItem
+            // 
+            this.unlockTableStatsToolStripMenuItem.Name = "unlockTableStatsToolStripMenuItem";
+            this.unlockTableStatsToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.unlockTableStatsToolStripMenuItem.Text = "Unlock Table Stats";
+            this.unlockTableStatsToolStripMenuItem.Click += new System.EventHandler(this.unlockTableStatsToolStripMenuItem_Click);
+            // 
+            // lockTableStatsToolStripMenuItem
+            // 
+            this.lockTableStatsToolStripMenuItem.Name = "lockTableStatsToolStripMenuItem";
+            this.lockTableStatsToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.lockTableStatsToolStripMenuItem.Text = "Lock Table Stats";
+            this.lockTableStatsToolStripMenuItem.Click += new System.EventHandler(this.lockTableStatsToolStripMenuItem_Click);
+            // 
+            // deleteTableStatsToolStripMenuItem1
+            // 
+            this.deleteTableStatsToolStripMenuItem1.Name = "deleteTableStatsToolStripMenuItem1";
+            this.deleteTableStatsToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
+            this.deleteTableStatsToolStripMenuItem1.Text = "Delete Table Stats";
+            this.deleteTableStatsToolStripMenuItem1.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem1_Click);
             // 
             // FormTableStats
             // 
@@ -1016,5 +1050,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem needDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gatherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem unlockTableStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockTableStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteTableStatsToolStripMenuItem1;
     }
 }

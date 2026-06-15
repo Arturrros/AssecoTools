@@ -664,15 +664,32 @@ namespace ClassSchemaStats
         private void deleteTableStatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
+            label1.Text = "";
             foreach (String tableName in checkedListBox1.CheckedItems)
             {
-                bool ret = new GTT(Connection, owner, tableName).DeleteTableSharedStats();
-                if (ret)
+                try
+                {
+                    new GTT(Connection, owner, tableName).DeleteTableSharedStats();
                     richTextBox1.AppendText("Delete stats on " + tableName + " has been executed, and the scope has been set to SESSION" + "\n");
-                else
+                }
+                catch (Exception exc) 
+                {
                     richTextBox1.AppendText("Delete stats on " + tableName + " it isn’t necessary" + "\n");
+                }
             }
         }
+
+        private void deleteTableStatsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            label1.Text = "";
+            foreach (String tableName in checkedListBox1.CheckedItems)
+            {
+               new GTT(Connection, owner, tableName).DeleteTableStats();
+               richTextBox1.AppendText("Delete stats on " + tableName + " has been executed" + "\n");
+            }
+        }
+
 
         private void needDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -690,14 +707,24 @@ namespace ClassSchemaStats
         private void gatherToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
+            label1.Text = "";
             foreach (String tableName in checkedListBox1.CheckedItems)
             {
                 GTT gt = new GTT(Connection, owner, tableName);
                 if (gt.CheckGttScope() == "SHARED")
                 {
-                    gt.GatherTableStats();
-                    richTextBox1.AppendText("Statistics...Done.\n");
-                    richTextBox1.AppendText("Do you really need SHARED stats on temporary???");
+                    try
+                    {
+                        gt.GatherTableStats();
+                        label1.Text = "Statistics Done.";
+                        richTextBox1.AppendText("INFO ONLY: Do you really need SHARED stats on temporary???");
+                    }
+                    catch (Exception exc)
+                    {
+                        label1.Text = exc.Message;
+                    }
+
+
                 }
                 else
                 {
@@ -707,7 +734,30 @@ namespace ClassSchemaStats
             }
         }
 
+
         #endregion
+
+        private void unlockTableStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Text = "Unlock shema stats. Wait...";
+            this.Refresh();
+            ClassSchemaStats.UnlockTableStats(Connection, owner, checkedListBox1.SelectedItem.ToString());
+
+            label1.Text = "Schema stats are unlocked";
+        }
+
+        private void lockTableStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Text = "Unlock shema stats. Wait...";
+            this.Refresh();
+            ClassSchemaStats.LockTableStats(Connection, owner, checkedListBox1.SelectedItem.ToString());
+
+            label1.Text = "Schema stats are locked";
+        }
 
        
     }

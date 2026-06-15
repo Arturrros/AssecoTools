@@ -74,7 +74,7 @@ namespace ClassSchemaStats
         /// Kasuje statystyki z tabeli tymczasowej tylko wtedy gdy są ustawione na SHARED
         /// </summary>
         /// <returns></returns>
-        public bool DeleteTableSharedStats()
+        public void DeleteTableSharedStats()
         {
             if (needDeleteSharedStats()) 
             {
@@ -89,16 +89,34 @@ namespace ClassSchemaStats
                 {
                     cmdSetPrefs.ExecuteNonQuery();
                     SetGttLevel("SESSION");
-                    return true;
+                    //return true;
                 }
                 catch (OracleException exc)
                 {
-                    return false;
+                    throw exc;
                 }
             }
-            else { return false; }  
+            else { }  
         }
 
+        public void DeleteTableStats()
+        {
+
+            OracleCommand cmdSetPrefs = new OracleCommand("DBMS_STATS.DELETE_TABLE_STATS", connection);
+            cmdSetPrefs.CommandType = CommandType.StoredProcedure;
+            cmdSetPrefs.BindByName = true;
+            cmdSetPrefs.Parameters.Add("ownname", OracleDbType.Varchar2).Value = owner;
+            cmdSetPrefs.Parameters.Add("tabname", OracleDbType.Varchar2).Value = tempTable;
+
+            try
+            {
+                cmdSetPrefs.ExecuteNonQuery();
+            }
+            catch (OracleException exc)
+            {
+                throw exc;
+            }
+        }
         /// <summary>
         /// sprawdź zakresy tabel tymczasowych typu SHARED wraz z przeanalizowanymi statystykami
         /// </summary>
@@ -127,7 +145,7 @@ namespace ClassSchemaStats
         /// Zrob statystyki na tabeli tymczasowej - tylko Auto
         /// </summary>
         /// <returns></returns>
-        public bool GatherTableStats()
+        public void GatherTableStats()
         {
             if (CheckGttScope() == "SESSION")
             {
@@ -142,11 +160,11 @@ namespace ClassSchemaStats
             try
             {
                 cmdGather.ExecuteNonQuery();
-                return true;
+                //return "Stats done.";
             }
             catch (OracleException exc)
             {
-                return false;
+                throw exc;
             }
         }
     }
