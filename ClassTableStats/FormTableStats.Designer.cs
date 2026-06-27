@@ -47,6 +47,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unSelectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectFromSqlidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -159,9 +160,10 @@
             this.refreshToolStripMenuItem,
             this.toolStripSeparator4,
             this.selectToolStripMenuItem,
-            this.unSelectAllToolStripMenuItem});
+            this.unSelectAllToolStripMenuItem,
+            this.selectFromSqlidToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 254);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 276);
             // 
             // statystykiToolStripMenuItem
             // 
@@ -257,6 +259,13 @@
             this.unSelectAllToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.unSelectAllToolStripMenuItem.Text = "UnSelect All";
             this.unSelectAllToolStripMenuItem.Click += new System.EventHandler(this.unSelectAllToolStripMenuItem_Click);
+            // 
+            // selectFromSqlidToolStripMenuItem
+            // 
+            this.selectFromSqlidToolStripMenuItem.Name = "selectFromSqlidToolStripMenuItem";
+            this.selectFromSqlidToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.selectFromSqlidToolStripMenuItem.Text = "Select from sql_id";
+            this.selectFromSqlidToolStripMenuItem.Click += new System.EventHandler(this.selectFromSqlidToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -1054,5 +1063,6 @@
         private System.Windows.Forms.ToolStripMenuItem unlockTableStatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockTableStatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteTableStatsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem selectFromSqlidToolStripMenuItem;
     }
 }

@@ -124,7 +124,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInputBox.Designer.cs">
+      <DependentUpon>FormInputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GTT.cs" />
+    <Compile Include="SIC.cs" />
     <Compile Include="StatsTime.cs" />
     <Compile Include="ClassExports.cs" />
     <Compile Include="ClassSchemaStatsClientSide.cs" />
@@ -180,6 +187,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormInputBox.resx">
+      <DependentUpon>FormInputBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSchemaStatsInternalTable.resx">
       <DependentUpon>FormSchemaStatsInternalTable.cs</DependentUpon>
     </EmbeddedResource>

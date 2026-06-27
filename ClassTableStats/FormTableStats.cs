@@ -782,6 +782,38 @@ namespace ClassSchemaStats
             label1.Text = "Schema stats are locked";
         }
 
-       
+        private void selectFromSqlidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sqlid = string.Empty;
+
+            FormInputBox fib = new FormInputBox();
+            if (fib.ShowDialog() == DialogResult.OK)
+            {
+                sqlid = fib.textBoxSqlId.Text;
+            }
+            else { return; }
+
+
+
+            if (!string.IsNullOrEmpty(sqlid))
+            {
+                List<string> Tables = new SIC(Connection, sqlid, owner).FindTablesInSql();
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    checkedListBox1.SetItemChecked(i, false);
+                }
+
+                foreach (string table in Tables)
+                {
+                    for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    {
+                        string item = checkedListBox1.Items[i].ToString();
+                        if (item == table)
+                            checkedListBox1.SetItemChecked(i, true);
+                    }
+                }
+            }
+        }
+
     }
 }
