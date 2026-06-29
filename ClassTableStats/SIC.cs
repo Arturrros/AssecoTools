@@ -58,7 +58,11 @@ namespace ClassSchemaStats
 
             foreach (string viewName in foundView)
             {
-                ListOfTables.Add(viewName);
+                List<string> depTab = GetUserViewsDependecies(viewName);
+                foreach (string depViewName in depTab)
+                {
+                    ListOfTables.Add(depViewName);
+                }
             }
 
             return ListOfTables;
@@ -158,13 +162,14 @@ namespace ClassSchemaStats
 
         private List<string> GetUserViewsDependecies(string ViewName)
         {
-            List<string> UserViews = new List<string>();
+            List<string> DependTables = new List<string>();
             try
             {
-                string sqlString = "select view_name from dba_views v where v.owner = :1";
+                string sqlString = "select referenced_name from dba_dependencies where owner = :1 and name = :2";
                 OracleCommand cmd = new OracleCommand(sqlString, connection);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.Add(new OracleParameter("owner", owner));
+                cmd.Parameters.Add(new OracleParameter("name", ViewName));
 
                 OracleDataReader rider = cmd.ExecuteReader();
 
@@ -172,7 +177,7 @@ namespace ClassSchemaStats
                 {
                     while (rider.Read())
                     {
-                        UserViews.Add(rider.GetString(0));
+                        DependTables.Add(rider.GetString(0));
                     }
                 }
                 else
@@ -184,7 +189,7 @@ namespace ClassSchemaStats
                 throw exc;
             }
 
-            return UserViews;
+            return DependTables;
         }
     }
 }
