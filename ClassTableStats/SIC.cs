@@ -33,19 +33,32 @@ namespace ClassSchemaStats
             List<string> ListOfTables = new List<string>();
 
             string SqlFullText = GetSqlTextFromSqlId();
+
             List<string> UserTables = GetUserTables();
+            List<string> UserViews = GetUserViews();
 
+            var tabPattern = @"\b(" + string.Join("|", UserTables.Concat(UserTables).Select(Regex.Escape)) + @")\b";
+            var viewPattern = @"\b(" + string.Join("|", UserViews.Concat(UserViews).Select(Regex.Escape)) + @")\b";
 
-            var pattern = @"\b(" + string.Join("|", UserTables.Select(Regex.Escape)) + @")\b";
-
-            var found = Regex.Matches(SqlFullText, pattern, RegexOptions.IgnoreCase)
+            var foundTab = Regex.Matches(SqlFullText, tabPattern, RegexOptions.IgnoreCase)
                              .Cast<Match>()
                              .Select(m => m.Value.ToUpper())
                              .Distinct()
                              .ToList();
-            foreach (string str in found)
+                             
+            var foundView = Regex.Matches(SqlFullText, viewPattern, RegexOptions.IgnoreCase)
+                             .Cast<Match>()
+                             .Select(m => m.Value.ToUpper())
+                             .Distinct()
+                             .ToList();                             
+            foreach (string tableName in foundTab)
             {
-                ListOfTables.Add(str);
+                ListOfTables.Add(tableName);
+            }
+
+            foreach (string viewName in foundView)
+            {
+                ListOfTables.Add(viewName);
             }
 
             return ListOfTables;
@@ -110,6 +123,68 @@ namespace ClassSchemaStats
             }
 
             return UserTables;
+        }
+
+        private List<string> GetUserViews()
+        {
+            List<string> UserViews = new List<string>();
+            try
+            {
+                string sqlString = "select view_name from dba_views v where v.owner = :1";
+                OracleCommand cmd = new OracleCommand(sqlString, connection);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add(new OracleParameter("owner", owner));
+
+                OracleDataReader rider = cmd.ExecuteReader();
+
+                if (rider.HasRows)
+                {
+                    while (rider.Read())
+                    {
+                        UserViews.Add(rider.GetString(0));
+                    }
+                }
+                else
+                {}
+                rider.Close();
+            }
+            catch (OracleException exc)
+            {
+                throw exc;
+            }
+
+            return UserViews;
+        }
+
+        private List<string> GetUserViewsDependecies(string ViewName)
+        {
+            List<string> UserViews = new List<string>();
+            try
+            {
+                string sqlString = "select view_name from dba_views v where v.owner = :1";
+                OracleCommand cmd = new OracleCommand(sqlString, connection);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add(new OracleParameter("owner", owner));
+
+                OracleDataReader rider = cmd.ExecuteReader();
+
+                if (rider.HasRows)
+                {
+                    while (rider.Read())
+                    {
+                        UserViews.Add(rider.GetString(0));
+                    }
+                }
+                else
+                {}
+                rider.Close();
+            }
+            catch (OracleException exc)
+            {
+                throw exc;
+            }
+
+            return UserViews;
         }
     }
 }
