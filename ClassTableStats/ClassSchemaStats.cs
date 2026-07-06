@@ -35,9 +35,9 @@ namespace ClassSchemaStats
             /// Dla baz 19
             /// </summary>
             public static string GET_USERS_19 = "SELECT USERNAME FROM DBA_USERS WHERE COMMON='NO' ORDER BY USERNAME";
-            public static string GET_TABLES = "SELECT TABLE_NAME FROM DBA_TABLES WHERE OWNER = :owner and temporary = :temporary ORDER BY TABLE_NAME";
+            public static string GET_TABLES = "SELECT TABLE_NAME FROM DBA_TABLES WHERE OWNER = :owner and temporary = :temporary and nested ='NO' ORDER BY TABLE_NAME";
             public static string GET_TABLE_INDEXES = "SELECT INDEX_NAME FROM DBA_INDEXES WHERE OWNER = :owner and TABLE_NAME = :temporary ORDER BY INDEX_NAME";
-            public static string GET_TABLE_STATS = "SELECT TABLE_NAME FROM DBA_TABLES WHERE OWNER = :owner and temporary = :temporary ORDER BY TABLE_NAME";
+            public static string GET_TABLE_STATS = "SELECT TABLE_NAME FROM DBA_TABLES WHERE OWNER = :owner and temporary = :temporary and nested ='NO' ORDER BY TABLE_NAME";
         }
 
         public static void UnlockSchemaStats(OracleConnection Connection, string Schema)

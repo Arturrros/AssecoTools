@@ -112,6 +112,7 @@
             this.unlockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTableStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectFromSqltextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -161,9 +162,10 @@
             this.toolStripSeparator4,
             this.selectToolStripMenuItem,
             this.unSelectAllToolStripMenuItem,
-            this.selectFromSqlidToolStripMenuItem});
+            this.selectFromSqlidToolStripMenuItem,
+            this.selectFromSqltextToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 276);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 320);
             // 
             // statystykiToolStripMenuItem
             // 
@@ -934,6 +936,13 @@
             this.deleteTableStatsToolStripMenuItem1.Text = "Delete Table Stats";
             this.deleteTableStatsToolStripMenuItem1.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem1_Click);
             // 
+            // selectFromSqltextToolStripMenuItem
+            // 
+            this.selectFromSqltextToolStripMenuItem.Name = "selectFromSqltextToolStripMenuItem";
+            this.selectFromSqltextToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.selectFromSqltextToolStripMenuItem.Text = "Select from sql_text";
+            this.selectFromSqltextToolStripMenuItem.Click += new System.EventHandler(this.selectFromSqltextToolStripMenuItem_Click);
+            // 
             // FormTableStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1064,5 +1073,6 @@
         private System.Windows.Forms.ToolStripMenuItem lockTableStatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteTableStatsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem selectFromSqlidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectFromSqltextToolStripMenuItem;
     }
 }

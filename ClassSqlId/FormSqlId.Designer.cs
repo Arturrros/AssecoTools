@@ -53,6 +53,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridViewSC = new System.Windows.Forms.DataGridView();
             this.bindingSourceSqlProfile = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControlProfile.SuspendLayout();
             this.tabPageSql.SuspendLayout();
@@ -83,7 +84,8 @@
             this.toolStripTextBoxSqlId,
             this.toolStripSeparator1,
             this.toolStripButtonStart,
-            this.toolStripButtonCancel});
+            this.toolStripButtonCancel,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(999, 25);
@@ -308,6 +310,16 @@
             // 
             this.bindingSourceSqlProfile.CurrentChanged += new System.EventHandler(this.bindingSourceSqlProfile_CurrentChanged);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(39, 22);
+            this.toolStripButton1.Text = "Flush";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // FormSqlId
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,5 +381,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingSource bindingSourceSqlProfile;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

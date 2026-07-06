@@ -786,15 +786,35 @@ namespace ClassSchemaStats
         {
             string sqlid = string.Empty;
 
-            FormInputBox fib = new FormInputBox();
+            FormInputBox fib = new FormInputBox(1);
             if (fib.ShowDialog() == DialogResult.OK)
             {
                 sqlid = fib.textBoxSqlId.Text;
             }
             else { return; }
 
+            GoSql(sqlid);
+        }
 
+        private void selectFromSqltextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sqlidOrSqlText = string.Empty;
 
+            FormInputBox fib = new FormInputBox(2);
+            if (fib.ShowDialog() == DialogResult.OK)
+            {
+                sqlidOrSqlText = fib.richTextBox1.Text;
+            }
+            else { return; }
+
+            Int32 selectedTabs = GoSql(sqlidOrSqlText);
+            if (selectedTabs > 0)
+                MessageBox.Show("Tables selected: " + selectedTabs.ToString());
+        }
+
+        private Int32 GoSql(string sqlid)
+        {
+            Int32 counter = 0;
             if (!string.IsNullOrEmpty(sqlid))
             {
                 List<string> Tables = new SIC(Connection, sqlid, owner).FindTablesInSql();
@@ -809,11 +829,16 @@ namespace ClassSchemaStats
                     {
                         string item = checkedListBox1.Items[i].ToString();
                         if (item == table)
+                        {
                             checkedListBox1.SetItemChecked(i, true);
+                            counter++;
+                        }
                     }
                 }
             }
+            return counter;
         }
 
+        
     }
 }

@@ -16,23 +16,48 @@ namespace ClassSchemaStats
     /// </summary>
     public class SIC
     {
+        private enum ALGMODE { SQLID = 1, SQLTEXT = 2 }
+
         private OracleConnection connection;
         private string owner;
         private string tempTable;
         private string sql_id;
+        private string sql_text;
+        private ALGMODE algMod;
 
-        public SIC(OracleConnection Connection, string SqlId, string Owner)
+        public SIC(OracleConnection Connection, string SqlIdOrSqlText, string Owner)
         {
+           
             this.connection = Connection;
             owner = Owner;
-            sql_id = SqlId;
+
+            if (SqlIdOrSqlText.Length == 13)
+            {
+                sql_text = string.Empty;
+                sql_id = SqlIdOrSqlText;
+                algMod = ALGMODE.SQLID;
+            }
+            if (SqlIdOrSqlText.Length > 13)
+            {
+                sql_text = SqlIdOrSqlText;
+                sql_id = string.Empty;
+                algMod = ALGMODE.SQLTEXT;
+            }
         }
 
         public List<string> FindTablesInSql()
         {
             List<string> ListOfTables = new List<string>();
+            string SqlFullText = string.Empty;
 
-            string SqlFullText = GetSqlTextFromSqlId();
+            if (algMod == ALGMODE.SQLID)
+            {
+                SqlFullText = GetSqlTextFromSqlId();
+            }
+            else
+            {
+                SqlFullText = sql_text;
+            }
 
             List<string> UserTables = GetUserTables();
             List<string> UserViews = GetUserViews();
@@ -67,6 +92,7 @@ namespace ClassSchemaStats
 
             return ListOfTables;
         }
+
         private string GetSqlTextFromSqlId()
         {
             string SqlFullText = string.Empty;
@@ -98,12 +124,13 @@ namespace ClassSchemaStats
 
             return SqlFullText.ToUpper();
         }
+
         private List<string> GetUserTables()
         {
             List<string> UserTables = new List<string>();
             try
             {
-                string sqlString = "select table_name from dba_tables t where t.owner = :1";
+                string sqlString = "select table_name from dba_tables t where t.owner = :1 and temporary = 'N' and nested = 'NO'";
                 OracleCommand cmd = new OracleCommand(sqlString, connection);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.Add(new OracleParameter("owner", owner));

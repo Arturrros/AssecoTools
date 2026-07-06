@@ -421,6 +421,50 @@ namespace ClassSqlId
         {
             drvProfile = (DataRowView)bindingSourceSqlProfile.Current;
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(FlushPlanCursor(Connection, toolStripTextBoxSqlId.Text));
+        }
+
+
+        /// <summary>
+        /// Flush corsor (sql_id)
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="sqlid"></param>
+        /// <returns>if command was send then true</returns>
+        public static string FlushPlanCursor(OracleConnection connection, string sqlid)
+        {
+            string sqlString = "SELECT cast(ADDRESS as varchar2(30)) as ADDRESS, HASH_VALUE FROM gv$sqlarea where sql_id=:sql_id";
+            OracleCommand cmd = new OracleCommand(sqlString, connection);
+            cmd.Parameters.Add("sql_id", sqlid);
+
+            try
+            {
+                OracleDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string sql = "SYS.DBMS_SHARED_POOL.PURGE";
+                    OracleCommand cmd2 = new OracleCommand(sql, connection);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+
+                    cmd2.Parameters.Add("name", reader.GetValue(0).ToString() + "," + reader.GetValue(1).ToString());
+                    cmd2.Parameters.Add("flags", "C");
+                    cmd2.Parameters.Add("heaps", 1);
+
+                    cmd2.ExecuteNonQuery();
+
+                }
+                reader.Close();
+                return "Purge completed";
+            }
+            catch (OracleException ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
     }
 
 }
