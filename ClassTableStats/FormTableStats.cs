@@ -795,7 +795,7 @@ namespace ClassSchemaStats
 
             String[] selectedTabs = GoSql(sqlid);
             if (selectedTabs.Count() > 0)
-                MessageBox.Show("Tables selected: " + String.Join("\n", selectedTabs));
+                MessageBox.Show("Tables selected:\n" + String.Join("\n", selectedTabs));
         }
 
         private void selectFromSqltextToolStripMenuItem_Click(object sender, EventArgs e)
