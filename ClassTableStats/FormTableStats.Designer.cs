@@ -115,6 +115,7 @@
             this.deleteTableStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.showSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -167,9 +168,10 @@
             this.selectToolStripMenuItem,
             this.unSelectAllToolStripMenuItem,
             this.selectFromSqlidToolStripMenuItem,
-            this.selectFromSqltextToolStripMenuItem});
+            this.selectFromSqltextToolStripMenuItem,
+            this.showSelectedToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 298);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 342);
             // 
             // statystykiToolStripMenuItem
             // 
@@ -970,6 +972,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "0";
             // 
+            // showSelectedToolStripMenuItem
+            // 
+            this.showSelectedToolStripMenuItem.Name = "showSelectedToolStripMenuItem";
+            this.showSelectedToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.showSelectedToolStripMenuItem.Text = "Show Selected";
+            this.showSelectedToolStripMenuItem.Click += new System.EventHandler(this.showSelectedToolStripMenuItem_Click);
+            // 
             // FormTableStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1104,5 +1113,6 @@
         private System.Windows.Forms.ToolStripMenuItem selectFromSqltextToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem showSelectedToolStripMenuItem;
     }
 }

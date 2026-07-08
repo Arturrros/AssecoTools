@@ -856,5 +856,15 @@ namespace ClassSchemaStats
             }
             label2.Text = checkedCount.ToString();
         }
+
+        private void showSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> list = new List<string>();
+            foreach ( object itemch in checkedListBox1.CheckedItems)
+            {
+                list.Add(itemch.ToString());
+            }
+            MessageBox.Show(String.Join("\n", list));
+        }
     }
 }
