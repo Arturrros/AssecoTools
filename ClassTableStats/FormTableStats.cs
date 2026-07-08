@@ -793,7 +793,9 @@ namespace ClassSchemaStats
             }
             else { return; }
 
-            GoSql(sqlid);
+            String[] selectedTabs = GoSql(sqlid);
+            if (selectedTabs.Count() > 0)
+                MessageBox.Show("Tables selected: " + String.Join("\n", selectedTabs));
         }
 
         private void selectFromSqltextToolStripMenuItem_Click(object sender, EventArgs e)
@@ -807,14 +809,14 @@ namespace ClassSchemaStats
             }
             else { return; }
 
-            Int32 selectedTabs = GoSql(sqlidOrSqlText);
-            if (selectedTabs > 0)
-                MessageBox.Show("Tables selected: " + selectedTabs.ToString());
+            String[] selectedTabs = GoSql(sqlidOrSqlText);
+            if (selectedTabs.Count() > 0)
+                MessageBox.Show("Tables selected:\n" + String.Join("\n", selectedTabs));
         }
 
-        private Int32 GoSql(string sqlid)
+        private String[] GoSql(string sqlid)
         {
-            Int32 counter = 0;
+            List<string> seltabs = new List<string>();
             if (!string.IsNullOrEmpty(sqlid))
             {
                 List<string> Tables = new SIC(Connection, sqlid, owner).FindTablesInSql();
@@ -831,12 +833,12 @@ namespace ClassSchemaStats
                         if (item == table)
                         {
                             checkedListBox1.SetItemChecked(i, true);
-                            counter++;
+                            seltabs.Add(item);
                         }
                     }
                 }
             }
-            return counter;
+            return seltabs.ToArray();
         }
 
         
