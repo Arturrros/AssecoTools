@@ -24,6 +24,8 @@ namespace ClassSchemaStats
         public delegate void Worker_Info_d(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt);
         public delegate void Worker_InfoTxt_d(string buff);
 
+        private Int32 checkedCount;
+
         OracleConnection Connection;
 
         string owner = string.Empty;
@@ -51,6 +53,7 @@ namespace ClassSchemaStats
         public FormTableStats(OracleConnection Connection, string Owner, SessionOptions sessionOptions, bool TemporaryMode)
         {
             InitializeComponent();
+            checkedCount = 0;
             this.sessionOptions = sessionOptions;
             InitializeLanguage(sessionOptions.CI);
 
@@ -841,6 +844,17 @@ namespace ClassSchemaStats
             return seltabs.ToArray();
         }
 
-        
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
+            {
+                checkedCount++;
+            }
+            if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
+            {
+                checkedCount--;
+            }
+            label2.Text = checkedCount.ToString();
+        }
     }
 }
