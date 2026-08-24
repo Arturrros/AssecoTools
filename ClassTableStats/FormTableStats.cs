@@ -866,5 +866,36 @@ namespace ClassSchemaStats
             }
             MessageBox.Show(String.Join("\n", list));
         }
+
+        private void copySelectedSeparatedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string temp = string.Empty;
+            foreach (object itemch in checkedListBox1.CheckedItems)
+            {
+                temp+=(itemch.ToString()+',');
+            }
+            Clipboard.SetText(temp.TrimEnd(','));
+            MessageBox.Show("Copied  with , separator");
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void importStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeExportTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -131,6 +131,7 @@
       <DependentUpon>FormInputBox.cs</DependentUpon>
     </Compile>
     <Compile Include="GTT.cs" />
+    <Compile Include="SHist.cs" />
     <Compile Include="SIC.cs" />
     <Compile Include="StatsTime.cs" />
     <Compile Include="ClassExports.cs" />
