@@ -52,6 +52,12 @@
             this.showSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.copySelectedSeparatedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.statsExportImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeExportTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbtnStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -118,12 +124,6 @@
             this.unlockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTableStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.statsExportImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeExportTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -312,6 +312,51 @@
             this.copySelectedSeparatedToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.copySelectedSeparatedToolStripMenuItem.Text = "Copy selected - separated";
             this.copySelectedSeparatedToolStripMenuItem.Click += new System.EventHandler(this.copySelectedSeparatedToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(207, 6);
+            // 
+            // statsExportImportToolStripMenuItem
+            // 
+            this.statsExportImportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createToolStripMenuItem,
+            this.removeExportTableToolStripMenuItem,
+            this.exportStatsToolStripMenuItem,
+            this.importStatsToolStripMenuItem});
+            this.statsExportImportToolStripMenuItem.Enabled = false;
+            this.statsExportImportToolStripMenuItem.Name = "statsExportImportToolStripMenuItem";
+            this.statsExportImportToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.statsExportImportToolStripMenuItem.Text = "Stats Export/Import";
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.createToolStripMenuItem.Text = "Create Export Table";
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
+            // removeExportTableToolStripMenuItem
+            // 
+            this.removeExportTableToolStripMenuItem.Name = "removeExportTableToolStripMenuItem";
+            this.removeExportTableToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.removeExportTableToolStripMenuItem.Text = "Remove Export Table";
+            this.removeExportTableToolStripMenuItem.Click += new System.EventHandler(this.removeExportTableToolStripMenuItem_Click);
+            // 
+            // exportStatsToolStripMenuItem
+            // 
+            this.exportStatsToolStripMenuItem.Name = "exportStatsToolStripMenuItem";
+            this.exportStatsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.exportStatsToolStripMenuItem.Text = "Export Stats";
+            this.exportStatsToolStripMenuItem.Click += new System.EventHandler(this.exportStatsToolStripMenuItem_Click);
+            // 
+            // importStatsToolStripMenuItem
+            // 
+            this.importStatsToolStripMenuItem.Name = "importStatsToolStripMenuItem";
+            this.importStatsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.importStatsToolStripMenuItem.Text = "Import Stats";
+            this.importStatsToolStripMenuItem.Click += new System.EventHandler(this.importStatsToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -1002,51 +1047,6 @@
             this.deleteTableStatsToolStripMenuItem1.Size = new System.Drawing.Size(247, 22);
             this.deleteTableStatsToolStripMenuItem1.Text = "Delete Table Stats";
             this.deleteTableStatsToolStripMenuItem1.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(207, 6);
-            // 
-            // statsExportImportToolStripMenuItem
-            // 
-            this.statsExportImportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createToolStripMenuItem,
-            this.removeExportTableToolStripMenuItem,
-            this.exportStatsToolStripMenuItem,
-            this.importStatsToolStripMenuItem});
-            this.statsExportImportToolStripMenuItem.Enabled = false;
-            this.statsExportImportToolStripMenuItem.Name = "statsExportImportToolStripMenuItem";
-            this.statsExportImportToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.statsExportImportToolStripMenuItem.Text = "Stats Export/Import";
-            // 
-            // createToolStripMenuItem
-            // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.createToolStripMenuItem.Text = "Create Export Table";
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
-            // 
-            // removeExportTableToolStripMenuItem
-            // 
-            this.removeExportTableToolStripMenuItem.Name = "removeExportTableToolStripMenuItem";
-            this.removeExportTableToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.removeExportTableToolStripMenuItem.Text = "Remove Export Table";
-            this.removeExportTableToolStripMenuItem.Click += new System.EventHandler(this.removeExportTableToolStripMenuItem_Click);
-            // 
-            // exportStatsToolStripMenuItem
-            // 
-            this.exportStatsToolStripMenuItem.Name = "exportStatsToolStripMenuItem";
-            this.exportStatsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.exportStatsToolStripMenuItem.Text = "Export Stats";
-            this.exportStatsToolStripMenuItem.Click += new System.EventHandler(this.exportStatsToolStripMenuItem_Click);
-            // 
-            // importStatsToolStripMenuItem
-            // 
-            this.importStatsToolStripMenuItem.Name = "importStatsToolStripMenuItem";
-            this.importStatsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.importStatsToolStripMenuItem.Text = "Import Stats";
-            this.importStatsToolStripMenuItem.Click += new System.EventHandler(this.importStatsToolStripMenuItem_Click);
             // 
             // FormTableStats
             // 

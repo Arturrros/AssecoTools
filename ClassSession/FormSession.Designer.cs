@@ -249,45 +249,45 @@
             this.stopToolStripMenuItem});
             this.contextMenuStripGo.Name = "contextMenuStripGo";
             this.contextMenuStripGo.OwnerItem = this.toolStripDropDownButton2;
-            this.contextMenuStripGo.Size = new System.Drawing.Size(181, 142);
+            this.contextMenuStripGo.Size = new System.Drawing.Size(107, 120);
             // 
             // secToolStripMenuItem
             // 
             this.secToolStripMenuItem.Name = "secToolStripMenuItem";
-            this.secToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.secToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.secToolStripMenuItem.Text = "1 sec";
             this.secToolStripMenuItem.Click += new System.EventHandler(this.secToolStripMenuItem_Click);
             // 
             // secToolStripMenuItem1
             // 
             this.secToolStripMenuItem1.Name = "secToolStripMenuItem1";
-            this.secToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.secToolStripMenuItem1.Size = new System.Drawing.Size(106, 22);
             this.secToolStripMenuItem1.Text = "2 sec";
             this.secToolStripMenuItem1.Click += new System.EventHandler(this.secToolStripMenuItem1_Click);
             // 
             // secToolStripMenuItem2
             // 
             this.secToolStripMenuItem2.Name = "secToolStripMenuItem2";
-            this.secToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.secToolStripMenuItem2.Size = new System.Drawing.Size(106, 22);
             this.secToolStripMenuItem2.Text = "5 sec";
             this.secToolStripMenuItem2.Click += new System.EventHandler(this.secToolStripMenuItem2_Click);
             // 
             // secToolStripMenuItem3
             // 
             this.secToolStripMenuItem3.Name = "secToolStripMenuItem3";
-            this.secToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.secToolStripMenuItem3.Size = new System.Drawing.Size(106, 22);
             this.secToolStripMenuItem3.Text = "10 sec";
             this.secToolStripMenuItem3.Click += new System.EventHandler(this.secToolStripMenuItem3_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(103, 6);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 

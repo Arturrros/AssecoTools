@@ -78,6 +78,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSqlId = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -214,14 +215,14 @@
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // disconnectToolStripMenuItem
             // 
             this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             this.disconnectToolStripMenuItem.Click += new System.EventHandler(this.disconnectToolStripMenuItem_Click);
             // 
@@ -289,14 +290,14 @@
             // eNToolStripMenuItem
             // 
             this.eNToolStripMenuItem.Name = "eNToolStripMenuItem";
-            this.eNToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eNToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.eNToolStripMenuItem.Text = "EN";
             this.eNToolStripMenuItem.Click += new System.EventHandler(this.eNToolStripMenuItem_Click);
             // 
             // pLToolStripMenuItem
             // 
             this.pLToolStripMenuItem.Name = "pLToolStripMenuItem";
-            this.pLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pLToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.pLToolStripMenuItem.Text = "PL";
             this.pLToolStripMenuItem.Click += new System.EventHandler(this.pLToolStripMenuItem_Click);
             // 
@@ -358,6 +359,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button_GlobalUndo);
             this.groupBox2.Controls.Add(this.btnActiveSessionHistory);
             this.groupBox2.Controls.Add(this.button1);
@@ -579,6 +581,17 @@
             this.btnSqlId.UseVisualStyleBackColor = true;
             this.btnSqlId.Click += new System.EventHandler(this.btnSqlId_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(552, 47);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 22);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "Mem";
+            this.toolTip1.SetToolTip(this.button4, "Hist Active Session");
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,6 +676,7 @@
         private System.Windows.Forms.Button btnActiveSessionHistory;
         private System.Windows.Forms.Button button_GlobalUndo;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

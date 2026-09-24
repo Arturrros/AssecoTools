@@ -18,6 +18,7 @@ using ClassReports;
 using ClassSize;
 using ClassVisual;
 using AssecoToolsOptions;
+using ClassMonitor;
 
 namespace AssecoTools
 {
@@ -509,6 +510,14 @@ namespace AssecoTools
             conntmp.Open();
             FormChartOnline fch = new FormChartOnline(conntmp,ClassMonitor.SQLStrings.GvMonitors.OSSTAT_BUSY_TIME, "OSSTAT_BUSY_TIME","global system");
             fch.Show(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
+            conntmp.Open();
+            FormMemory fash = new FormMemory(conntmp, sessionOptions);
+            fash.ShowDialog(this);
         }
     }
 }
