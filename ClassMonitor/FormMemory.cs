@@ -13,158 +13,217 @@ using System.Windows.Forms;
 
 namespace ClassMonitor
 {
+    /// <summary>
+    /// Description:    Wykresy pamięci wizualizacja
+    /// Date:           09-2026
+    /// Autor:          artur.balon@asseco.pl
+    /// Changelog:  
+    /// </summary>
     public partial class FormMemory : Form
     {
-        SessionOptions sessionOptions;
-        OracleConnection connection;
-        OracleCommand cmd;
-        public FormMemory(OracleConnection Connection, SessionOptions sessionOptions)
+        private readonly SessionOptions sessionOptions;
+        private readonly OracleConnection connection;
+
+        public FormMemory(OracleConnection connection, SessionOptions sessionOptions)
         {
             InitializeComponent();
-            connection = Connection;
-            
+
+            this.connection = connection;
+            this.sessionOptions = sessionOptions;
         }
 
         private void FormMemory_Load(object sender, EventArgs e)
         {
-            
-            OracleCommand cmds = new OracleCommand("select name, round(value/1024/1024) from v$parameter where name in ('memory_max_target','memory_target','sga_max_size','sga_target','db_cache_size','shared_pool_size','large_pool_size','java_pool_size','streams_pool_size')", connection);
-            OracleDataReader reader = cmds.ExecuteReader();
-
-            while (reader.Read())
+            try
             {
-                chart1.Legends["SGAINFOLegend"].CustomItems.Add(Color.Empty, reader.GetValue(0).ToString() + " : " + reader.GetValue(1).ToString());
+                LoadMemoryParameters();
+                LoadSgaChart();
+                LoadPgaChart();
             }
-            reader.Close();
-
-            OracleCommand cmdp = new OracleCommand("select name, round(value/1024/1024) from v$parameter where name in ('pga_aggregate_target')", connection);
-            OracleDataReader readerp = cmdp.ExecuteReader();
-
-            while (readerp.Read())
+            catch (Exception ex)
             {
-                chart2.Legends["PGAINFOLegend"].CustomItems.Add(Color.Empty, readerp.GetValue(0).ToString() + " : " + readerp.GetValue(1).ToString());
+                MessageBox.Show( ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            readerp.Close();
-
-            OracleCommand cmd = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$sga", connection);
-            OracleDataAdapter ada = new OracleDataAdapter(cmd);
-            DataTable tab = new DataTable();
-            ada.Fill(tab);
-            
-
-            chart1.DataSource = tab;
-            chart1.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            chart1.Series["SGA"].IsValueShownAsLabel = true;
-            chart1.Series["SGA"].XValueMember = "Name";
-            chart1.Series["SGA"].YValueMembers = "MBytes";
-            chart1.Legends["SGALegend"].Title = "SGA";
-            chart1.DataBind();
-
-            OracleCommand cmd1 = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$pgastat where name in ('maximum PGA allocated','total PGA inuse')", connection);
-            OracleDataAdapter ada1 = new OracleDataAdapter(cmd1);
-            DataTable tab1 = new DataTable();
-            ada1.Fill(tab1);
-
-
-            chart2.DataSource = tab1;
-            chart2.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            chart2.Series["PGA"].IsValueShownAsLabel = true;
-            chart2.Series["PGA"].XValueMember = "Name";
-            chart2.Series["PGA"].YValueMembers = "MBytes";
-            chart2.Legends["PGALegend"].Title = "PGA";
-            chart2.DataBind();
-
-            //toolStripComboBox1.SelectedIndex = 1;
         }
-        private void chart1_Click(object sender, EventArgs e)
+
+        private void LoadMemoryParameters()
         {
-            switch (chart1.Legends["SGALegend"].Title)
-            {
-                case "SGA":
-                    OracleCommand cmd1 = new OracleCommand("select Name, round(bytes/1024/1024) as MBytes from (select * from v$sgainfo order by bytes desc)", connection);
-                    OracleDataAdapter ada1 = new OracleDataAdapter(cmd1);
-                    DataTable tab1 = new DataTable();
-                    ada1.Fill(tab1);
-                    chart1.DataSource = tab1;
-                    chart1.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                    chart1.Series["SGA"].IsValueShownAsLabel = true;
-                    chart1.Series["SGA"].XValueMember = "Name";
-                    chart1.Series["SGA"].YValueMembers = "MBytes";
-                    chart1.Legends["SGALegend"].Title = "SGAINFO";
-                    chart1.DataBind();
-                    break;
-                case "SGAINFO":
-                    OracleCommand cmd = new OracleCommand("select sga_size,estd_physical_reads from v$sga_target_advice", connection);
-                    OracleDataAdapter ada = new OracleDataAdapter(cmd);
-                    DataTable tab = new DataTable();
-                    ada.Fill(tab);
-                    chart1.DataSource = tab;
-                    chart1.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                    chart1.Series["SGA"].IsValueShownAsLabel = true;
-                    chart1.Series["SGA"].XValueMember = "sga_size";
-                    chart1.Series["SGA"].YValueMembers = "estd_physical_reads";
-                    chart1.Legends["SGALegend"].Title = "SGAADV";
-                    chart1.ChartAreas["SGAChartArea"].AxisX.Title = "MB of SGA";
-                    chart1.ChartAreas["SGAChartArea"].AxisY.Title = "Physical Reads";
-                    chart1.DataBind();
+            ChartSGA.Legends["SGAINFOLegend"].CustomItems.Clear();
+            ChartPGA.Legends["PGAINFOLegend"].CustomItems.Clear();
 
-                    break;
-                case "SGAADV":
-                    OracleCommand cmd2 = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$sga", connection);
-                    OracleDataAdapter ada2 = new OracleDataAdapter(cmd2);
-                    DataTable tab2 = new DataTable();
-                    ada2.Fill(tab2);
-                    chart1.DataSource = tab2;
-                    chart1.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                    chart1.Series["SGA"].IsValueShownAsLabel = true;
-                    chart1.Series["SGA"].XValueMember = "Name";
-                    chart1.Series["SGA"].YValueMembers = "MBytes";
-                    chart1.Legends["SGALegend"].Title = "SGA";
-                    chart1.DataBind();
-                    break;
-                default:
-                    break;
+            using (OracleCommand commands = new OracleCommand(
+                "select name, round(value/1024/1024)" + 
+                " from v$parameter " + 
+                " where name in ('memory_max_target', 'memory_target', 'sga_max_size', 'sga_target', 'db_cache_size', 'shared_pool_size', 'large_pool_size', 'java_pool_size', 'streams_pool_size')",
+                connection))
+            {
+                using (OracleDataReader reader = commands.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ChartSGA.Legends["SGAINFOLegend"].CustomItems.Add(
+                            Color.Empty,
+                            reader.GetValue(0).ToString() + " : " + reader.GetValue(1).ToString());
+                    }
+                }
+            }
+
+            using (OracleCommand commandPga = new OracleCommand(
+                "select  name, round(value/1024/1024) " +
+                "from v$parameter "+
+                "where name in ('pga_aggregate_target')",
+                connection))
+            {
+                using (OracleDataReader readerPga = commandPga.ExecuteReader())
+                {
+                    while (readerPga.Read())
+                    {
+                        ChartPGA.Legends["PGAINFOLegend"].CustomItems.Add(
+                            Color.Empty,
+                            readerPga.GetValue(0).ToString() + " : " + readerPga.GetValue(1).ToString());
+                    }
+                }
             }
         }
 
-        private void chart2_Click(object sender, EventArgs e)
+        private void LoadSgaChart()
         {
-            switch (chart2.Legends["PGALegend"].Title)
+            using (OracleCommand cmd = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$sga", connection))
+            using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
             {
-                case "PGAADV":
-                    OracleCommand cmd1 = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$pgastat where name in ('maximum PGA allocated','total PGA inuse')", connection);
-                    OracleDataAdapter ada1 = new OracleDataAdapter(cmd1);
-                    DataTable tab1 = new DataTable();
-                    ada1.Fill(tab1);
-                    chart2.DataSource = tab1;
-                    chart2.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                    chart2.Series["PGA"].IsValueShownAsLabel = true;
-                    chart2.Series["PGA"].XValueMember = "Name";
-                    chart2.Series["PGA"].YValueMembers = "MBytes";
-                    chart2.Legends["PGALegend"].Title = "PGA";
-                    chart1.DataBind();
-                    break;
-                case "PGA":
-                    OracleCommand cmd = new OracleCommand("select round(PGA_TARGET_FOR_ESTIMATE/1024/1024) as PGA_TARGET_FOR_ESTIMATE,round(ESTD_EXTRA_BYTES_RW/1024/1024) as ESTD_EXTRA_BYTES_RW from v$pga_target_advice", connection);
-                    OracleDataAdapter ada = new OracleDataAdapter(cmd);
-                    DataTable tab = new DataTable();
-                    ada.Fill(tab);
-                    chart2.DataSource = tab;
-                    chart2.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                    chart2.Series["PGA"].IsValueShownAsLabel = true;
-                    chart2.Series["PGA"].XValueMember = "PGA_TARGET_FOR_ESTIMATE";
-                    chart2.Series["PGA"].YValueMembers = "ESTD_EXTRA_BYTES_RW";
-                    chart2.Legends["PGALegend"].Title = "PGAADV";
-                    chart2.ChartAreas["PGAChartArea"].AxisX.Title = "MB of PGA";
-                    chart2.ChartAreas["PGAChartArea"].AxisY.Title = "MB Read/Writes";
-                    chart2.DataBind();
+                DataTable table = new DataTable();
+                adapter.Fill(table);
 
-                    break;
-                default:
-                    break;
+                ChartSGA.DataSource = table;
+                ChartSGA.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                ChartSGA.Series["SGA"].IsValueShownAsLabel = true;
+                ChartSGA.Series["SGA"].XValueMember = "Name";
+                ChartSGA.Series["SGA"].YValueMembers = "MBytes";
+                ChartSGA.Legends["SGALegend"].Title = "SGA";
+                ChartSGA.DataBind();
             }
         }
 
+        private void LoadPgaChart()
+        {
+            using (OracleCommand cmd = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$pgastat where name in ('maximum PGA allocated','total PGA inuse')", connection))
+            using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+            {
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+
+                ChartPGA.DataSource = table;
+                ChartPGA.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                ChartPGA.Series["PGA"].IsValueShownAsLabel = true;
+                ChartPGA.Series["PGA"].XValueMember = "Name";
+                ChartPGA.Series["PGA"].YValueMembers = "MBytes";
+                ChartPGA.Legends["PGALegend"].Title = "PGA";
+                ChartPGA.DataBind();
+            }
+        }
+
+        private void ChartSGA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (ChartSGA.Legends["SGALegend"].Title)
+                {
+                    case "SGA":
+                        using (OracleCommand cmd = new OracleCommand("select Name, round(bytes/1024/1024) as MBytes from (select * from v$sgainfo order by bytes desc)", connection))
+                        using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+                        {
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            ChartSGA.DataSource = table;
+                            ChartSGA.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                            ChartSGA.Series["SGA"].IsValueShownAsLabel = true;
+                            ChartSGA.Series["SGA"].XValueMember = "Name";
+                            ChartSGA.Series["SGA"].YValueMembers = "MBytes";
+                            ChartSGA.Legends["SGALegend"].Title = "SGAINFO";
+                            ChartSGA.DataBind();
+                        }
+                        break;
+
+                    case "SGAINFO":
+                        using (OracleCommand cmd = new OracleCommand("select sga_size,estd_physical_reads from v$sga_target_advice", connection))
+                        using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+                        {
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            ChartSGA.DataSource = table;
+                            ChartSGA.Series["SGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                            ChartSGA.Series["SGA"].IsValueShownAsLabel = true;
+                            ChartSGA.Series["SGA"].XValueMember = "sga_size";
+                            ChartSGA.Series["SGA"].YValueMembers = "estd_physical_reads";
+                            ChartSGA.Legends["SGALegend"].Title = "SGAADV";
+                            ChartSGA.ChartAreas["SGAChartArea"].AxisX.Title = "MB of SGA";
+                            ChartSGA.ChartAreas["SGAChartArea"].AxisY.Title = "Physical Reads";
+                            ChartSGA.DataBind();
+                        }
+                        break;
+
+                    case "SGAADV":
+                        LoadSgaChart();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas odświeżania wykresu SGA: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ChartPGA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (ChartPGA.Legends["PGALegend"].Title)
+                {
+                    case "PGAADV":
+                        using (OracleCommand cmd = new OracleCommand("select Name, round(value/1024/1024) as MBytes from v$pgastat where name in ('maximum PGA allocated','total PGA inuse')", connection))
+                        using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+                        {
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            ChartPGA.DataSource = table;
+                            ChartPGA.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                            ChartPGA.Series["PGA"].IsValueShownAsLabel = true;
+                            ChartPGA.Series["PGA"].XValueMember = "Name";
+                            ChartPGA.Series["PGA"].YValueMembers = "MBytes";
+                            ChartPGA.Legends["PGALegend"].Title = "PGA";
+                            ChartPGA.DataBind();
+                        }
+                        break;
+
+                    case "PGA":
+                        using (OracleCommand cmd = new OracleCommand("select round(PGA_TARGET_FOR_ESTIMATE/1024/1024) as PGA_TARGET_FOR_ESTIMATE,round(ESTD_EXTRA_BYTES_RW/1024/1024) as ESTD_EXTRA_BYTES_RW from v$pga_target_advice", connection))
+                        using (OracleDataAdapter adapter = new OracleDataAdapter(cmd))
+                        {
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            ChartPGA.DataSource = table;
+                            ChartPGA.Series["PGA"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+                            ChartPGA.Series["PGA"].IsValueShownAsLabel = true;
+                            ChartPGA.Series["PGA"].XValueMember = "PGA_TARGET_FOR_ESTIMATE";
+                            ChartPGA.Series["PGA"].YValueMembers = "ESTD_EXTRA_BYTES_RW";
+                            ChartPGA.Legends["PGALegend"].Title = "PGAADV";
+                            ChartPGA.ChartAreas["PGAChartArea"].AxisX.Title = "MB of PGA";
+                            ChartPGA.ChartAreas["PGAChartArea"].AxisY.Title = "MB Read/Writes";
+                            ChartPGA.DataBind();
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas odświeżania wykresu PGA: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
