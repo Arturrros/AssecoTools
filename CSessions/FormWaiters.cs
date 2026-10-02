@@ -203,7 +203,7 @@ namespace ClassWaiters
 
             OracleConnection conntmp = (OracleConnection)Connection.Clone();
             conntmp.Open();
-            FormWaitersHistory fwh = new FormWaitersHistory(conntmp);
+            FormWaitersHistory fwh = new FormWaitersHistory(conntmp,sessionOptions);
             fwh.Show(this);
 
 

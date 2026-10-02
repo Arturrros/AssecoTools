@@ -25,7 +25,7 @@ namespace CSessions
 
         static string SQL_WAITERS = "select id, dt, info, blo_sid, blo_osuser, blo_program, blo_machine, blo_last_call_et, blo_status, blo_sql_id, wai_sid, wai_osuser, wai_program, wai_machine, wai_wait_time, wai_sql_id, blo_client_info, wai_client_info, wai_status from holding_locks order by dt desc, wai_wait_time asc";
 
-        public FormWaitersHistory(OracleConnection Connection)
+        public FormWaitersHistory(OracleConnection Connection,SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
@@ -72,9 +72,15 @@ namespace CSessions
 
         private void sqlidToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string sql_id = drv["wai_sql_id"].ToString();
-            FormSqlId fsi = new FormSqlId(Connection, sql_id, sessionOptions);
-            fsi.Show(this);
+            if (drv != null)
+            {
+                if (!String.IsNullOrEmpty(drv["wai_sql_id"].ToString().Trim()))
+                {
+                    string sql_id = drv["wai_sql_id"].ToString();
+                    FormSqlId fsi = new FormSqlId(Connection, sql_id, sessionOptions);
+                    fsi.Show(this);
+                }
+            }
         }
 
         private void FormWaitersHistory_FormClosing(object sender, FormClosingEventArgs e)
