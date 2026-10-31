@@ -361,6 +361,26 @@ namespace ClassMonitor
                                                 "where\n" +
                                                 "   t.saddr = x.ses_addr\n" +
                                                 "   ORDER BY x.used_ublk DESC";
+        public static string SESION_MEMORY = "SELECT s.sid,\n" +
+                                             "       s.username,\n" +
+                                             "       s.osuser,\n" +
+                                             "       s.program,\n" + 
+                                             "       s.status,\n" +
+                                             "       ROUND(MAX(CASE WHEN n.name = 'session pga memory'     THEN st.value END) / 1024 / 1024, 2) AS pga_mb,\n" +
+                                             "       ROUND(MAX(CASE WHEN n.name = 'session uga memory'     THEN st.value END) / 1024 / 1024, 2) AS uga_mb,\n" +
+                                             "       ROUND(MAX(CASE WHEN n.name = 'session pga memory max' THEN st.value END) / 1024 / 1024, 2) AS pga_max_mb,\n" +
+                                             "       ROUND(MAX(CASE WHEN n.name = 'session uga memory max' THEN st.value END) / 1024 / 1024, 2) AS uga_max_mb\n" +
+                                             " FROM   v$session  s\r\nJOIN   v$sesstat  st ON st.sid = s.sid\n" +
+                                             " JOIN   v$statname n  ON n.statistic# = st.statistic#\n" +
+                                             " WHERE  n.name IN ('session pga memory',\n" +
+                                             "                  'session pga memory max',\n" +
+                                             "                  'session uga memory',\n" +
+                                             "                  'session uga memory max')\n" +
+                                             " AND    s.type = 'USER'\n" +
+                                             " GROUP  BY s.sid, s.username, s.osuser, s.program, s.status\n" +
+                                             " ORDER  BY pga_mb DESC";
+
+
         public class GvMonitors 
         {
             public static string SESION_TRANSACTION = "select\n" +

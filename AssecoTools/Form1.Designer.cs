@@ -41,6 +41,7 @@
             this.btn_Session = new System.Windows.Forms.Button();
             this.btnActiveSessionHistory = new System.Windows.Forms.Button();
             this.button_GlobalUndo = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSqlId = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -201,6 +202,17 @@
             this.toolTip1.SetToolTip(this.button_GlobalUndo, "Global UNDO Sum");
             this.button_GlobalUndo.UseVisualStyleBackColor = true;
             this.button_GlobalUndo.Click += new System.EventHandler(this.button_GlobalUndo_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(607, 47);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 22);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "M";
+            this.toolTip1.SetToolTip(this.button4, "Hist Active Session");
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -359,6 +371,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button_GlobalUndo);
             this.groupBox2.Controls.Add(this.btnActiveSessionHistory);
@@ -581,16 +594,15 @@
             this.btnSqlId.UseVisualStyleBackColor = true;
             this.btnSqlId.Click += new System.EventHandler(this.btnSqlId_Click);
             // 
-            // button4
+            // button5
             // 
-            this.button4.Location = new System.Drawing.Point(552, 47);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(85, 22);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "Mem";
-            this.toolTip1.SetToolTip(this.button4, "Hist Active Session");
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button5.Location = new System.Drawing.Point(552, 47);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(56, 22);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Mem";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -677,6 +689,7 @@
         private System.Windows.Forms.Button button_GlobalUndo;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

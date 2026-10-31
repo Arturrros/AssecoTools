@@ -519,5 +519,13 @@ namespace AssecoTools
             FormMemory fash = new FormMemory(conntmp, sessionOptions);
             fash.ShowDialog(this);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OracleConnection conntmp = (OracleConnection)ConnectionMain.Clone();
+            conntmp.Open();
+            ClassMonitor.FormMonitor01 fm = new ClassMonitor.FormMonitor01("", "Memory", ClassMonitor.SQLStrings.SESION_MEMORY, conntmp, 50, 1200, sessionOptions);
+            fm.Show(this);
+        }
     }
 }
