@@ -61,6 +61,7 @@
             this.btnUserCalls = new System.Windows.Forms.Button();
             this.btnDeadlocks = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnTrans = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
@@ -79,7 +80,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSqlId = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -212,6 +212,7 @@
             this.button4.Text = "M";
             this.toolTip1.SetToolTip(this.button4, "Hist Active Session");
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // fileToolStripMenuItem
@@ -395,6 +396,16 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Monitor buttons ( work work work.... )";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(461, 47);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(85, 22);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Memory";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
@@ -593,16 +604,6 @@
             this.btnSqlId.Text = "sql_id";
             this.btnSqlId.UseVisualStyleBackColor = true;
             this.btnSqlId.Click += new System.EventHandler(this.btnSqlId_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(552, 47);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(56, 22);
-            this.button5.TabIndex = 21;
-            this.button5.Text = "Mem";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
