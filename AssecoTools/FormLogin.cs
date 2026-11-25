@@ -39,6 +39,7 @@ namespace AssecoTools
             AssecoTools.Default.ServiceName = txtSERVICE_NAME.Text;
             AssecoTools.Default.UserName = txtUSER.Text;
             AssecoTools.Default.ConnName = txtConnName.Text;
+            sessionOptions.userConnectionName = txtConnName.Text;
             AssecoTools.Default.Save();
            
         }
