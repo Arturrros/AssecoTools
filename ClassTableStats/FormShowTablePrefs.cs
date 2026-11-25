@@ -70,18 +70,75 @@ namespace ClassSchemaStats
 
         private void Filtruj()
         {
-            string filtr = textBox1.Text;
-            if (filtr.Trim().Length > 0)
+
+            string filtr = string.Empty;
+            string filtr1 = string.Empty;
+            string filtr2 = string.Empty;
+
+
+
+            if (textBox1.Text.Trim().Length > 0)
             {
-                dtPrefs.DefaultView.RowFilter = "table_name like '%" + filtr + "%'";
+                filtr1 += "table_name like '%" + textBox1.Text + "%'";
             }
             else
             {
-                dtPrefs.DefaultView.RowFilter = "";
+                filtr1 = "";
+            }
+
+            if (textBox2.Text.Trim().Length > 0)
+            {
+                filtr2 += "preference_name like '%" + textBox2.Text + "%'";
+            }
+            else
+            {
+                filtr2 = "";
+            }
+
+
+            if (string.IsNullOrEmpty(filtr1) && string.IsNullOrEmpty(filtr2))
+            {
+                filtr = string.Empty;
+            }
+            else if (!string.IsNullOrEmpty(filtr1) && string.IsNullOrEmpty(filtr2))
+            {
+                filtr = filtr1;
+            }
+            else if (string.IsNullOrEmpty(filtr1) && !string.IsNullOrEmpty(filtr2))
+            {
+                filtr = filtr2;
+            }
+            else if (!string.IsNullOrEmpty(filtr1) && !string.IsNullOrEmpty(filtr2))
+            {
+                filtr = filtr1 + " and " + filtr2;
+            }
+
+            //filtr = filtr1 +  (string.IsNullOrEmpty(filtr2) ? "" : " and ") + filtr2;
+
+            try
+            {
+
+                if (filtr.Trim().Length > 0)
+                {
+                    dtPrefs.DefaultView.RowFilter = filtr;
+                }
+                else
+                {
+                    dtPrefs.DefaultView.RowFilter = "";
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Filtr:" + filtr);
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Filtruj();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
             Filtruj();
         }

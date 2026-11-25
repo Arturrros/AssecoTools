@@ -124,6 +124,7 @@
             this.unlockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockTableStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTableStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBoxForce = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -491,6 +492,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.checkBoxForce);
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Controls.Add(this.groupBox17);
             this.groupBox4.Controls.Add(this.groupBox16);
@@ -1048,6 +1050,16 @@
             this.deleteTableStatsToolStripMenuItem1.Text = "Delete Table Stats";
             this.deleteTableStatsToolStripMenuItem1.Click += new System.EventHandler(this.deleteTableStatsToolStripMenuItem1_Click);
             // 
+            // checkBoxForce
+            // 
+            this.checkBoxForce.AutoSize = true;
+            this.checkBoxForce.Location = new System.Drawing.Point(7, 365);
+            this.checkBoxForce.Name = "checkBoxForce";
+            this.checkBoxForce.Size = new System.Drawing.Size(62, 17);
+            this.checkBoxForce.TabIndex = 16;
+            this.checkBoxForce.Text = "FORCE";
+            this.checkBoxForce.UseVisualStyleBackColor = true;
+            // 
             // FormTableStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1072,6 +1084,7 @@
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox17.ResumeLayout(false);
@@ -1191,5 +1204,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeExportTableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportStatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importStatsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBoxForce;
     }
 }

@@ -26,7 +26,9 @@ namespace ClassSchemaStats
         readonly string degree = string.Empty;
         readonly string estimatePercent = string.Empty;
         readonly string noInvalidate = string.Empty;
+        private string force = string.Empty;
         private readonly OracleCommand cmdIndexGather;
+        
         readonly BackgroundWorker worker;
 
         bool autostop = true;
@@ -35,10 +37,11 @@ namespace ClassSchemaStats
         String execBuffer = String.Empty;
         Int32 execBufferCount = 0;
 
-        public FormIndexStats(OracleConnection Connection, string Owner, string Tablename, string Degree ,string EstimatePercent, string NoInvalidate, SessionOptions sessionOptions)
+        public FormIndexStats(OracleConnection Connection, string Owner, string Tablename, string Degree ,string EstimatePercent, string NoInvalidate, string Force, SessionOptions sessionOptions)
         {
             InitializeComponent();
             this.Connection = Connection;
+            this.Text += " - " + Tablename;
 
             cmdIndexGather = new OracleCommand();
             cmdIndexGather.Connection = Connection;
@@ -49,6 +52,7 @@ namespace ClassSchemaStats
             degree = Degree;
             estimatePercent=EstimatePercent;
             noInvalidate = NoInvalidate;
+            force = Force;
 
             worker = new BackgroundWorker
             {
@@ -107,7 +111,7 @@ namespace ClassSchemaStats
         /// <param name="runWorker"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        private int Runquery(List<string> Indexes, string Owner, string Degree , string EstimatePercent, string NoInvalidate, BackgroundWorker runWorker, DoWorkEventArgs e)
+        private int Runquery(List<string> Indexes, string Owner, string Degree , string EstimatePercent, string NoInvalidate, string Force, BackgroundWorker runWorker, DoWorkEventArgs e)
         {
             Int32 indexCounter = 0;
             Worker_Info("Wait for Index prepare...", null, null, null);
@@ -136,6 +140,7 @@ namespace ClassSchemaStats
                     "                                INDNAME          => '" + indexName + "',\n" +
                     "                                ESTIMATE_PERCENT => " + EstimatePercent + ",\n" +
                     "                                DEGREE           => " + Degree + ",\n" +
+                    "                                FORCE            => " + Force + ",\n" +
                     "                                NO_INVALIDATE    => " + NoInvalidate + "\n" +
                     ");\n" +
                     "END;\n";
@@ -210,7 +215,7 @@ namespace ClassSchemaStats
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            e.Result = Runquery((List<String>)e.Argument, owner, degree, estimatePercent, noInvalidate, worker, e);
+            e.Result = Runquery((List<String>)e.Argument, owner, degree, estimatePercent, noInvalidate, force, worker, e);
         }
 
         private void Worker_Info(string buff, Int32? doneCnt, Int32? errCnt, Int32? allCnt)

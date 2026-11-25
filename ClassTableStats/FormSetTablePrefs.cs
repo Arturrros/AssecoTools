@@ -33,6 +33,7 @@ namespace ClassSchemaStats
             connection = Connection;
             tableName = TableName;
             this.sessionOptions = sessionOptions;
+            this.Text += " - " + TableName;
             if (sessionOptions.isActiveSessionColor)
             {
                 panel3.BackColor = sessionOptions.SessionColor;
@@ -125,6 +126,12 @@ namespace ClassSchemaStats
                         "                            tabname => '<TABLE_NAME>',\n" +
                         "                            pname   => 'AUTO_STAT_EXTENSIONS') as val\n" +
                         "  from dual\n" +
+                        //"union all\n" +
+                        // "select 'AUTOSTATS_TARGET' as opts,\n" +
+                        //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +
+                        //"                            tabname => '<TABLE_NAME>',\n" +
+                        //"                            pname   => 'AUTOSTATS_TARGET') as val\n" +
+                        //"  from dual\n" +
                         "union all\n" +
                         //"select 'AUTO_TASK_STATUS' as opt,\n" +
                         //"       DBMS_STATS.get_prefs(ownname => '<OWNER>',\n" +

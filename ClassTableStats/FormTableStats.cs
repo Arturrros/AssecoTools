@@ -36,6 +36,7 @@ namespace ClassSchemaStats
         string granularity = string.Empty;
         string opt = string.Empty;
         string gatheropt = string.Empty;
+        string force = string.Empty;
 
         bool GatherStatisticsAuto = false;
 
@@ -149,7 +150,7 @@ namespace ClassSchemaStats
         /// <param name="runWorker"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        private int runquery(List<string> Tables, string Owner, string Degree , string EstimatePercent, string NoInvalidate, string Cascade, string Granularity, string Opt, string GatherOpt, BackgroundWorker runWorker, DoWorkEventArgs e)
+        private int runquery(List<string> Tables, string Owner, string Degree , string EstimatePercent, string NoInvalidate, string Cascade, string Granularity, string Opt, string GatherOpt, string Force, BackgroundWorker runWorker, DoWorkEventArgs e)
         {
             Int32 tableCounter = 0;
 
@@ -186,6 +187,7 @@ namespace ClassSchemaStats
                     "                                GRANULARITY      => " + "'" + Granularity + "',\n" +
                     "                                METHOD_OPT       => " + "'" + Opt + "',\n" +
                     "                                OPTIONS          => " + "'" + GatherOpt + "',\n" +
+                    "                                FORCE            => " + Force + ",\n" +
                     "                                CASCADE          => " + Cascade + ");\n" +
                     "END;\n";
 
@@ -337,7 +339,7 @@ namespace ClassSchemaStats
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             if(!GatherStatisticsAuto)
-                e.Result = runquery((List<String>)e.Argument, owner, degree, estimatePercent, noinvalidate, cascade, granularity, opt, gatheropt, worker, e);
+                e.Result = runquery((List<String>)e.Argument, owner, degree, estimatePercent, noinvalidate, cascade, granularity, opt, gatheropt, force, worker, e);
             else
                 e.Result = runqueryAuto((List<String>)e.Argument, owner, worker, e);
         }
@@ -547,6 +549,17 @@ namespace ClassSchemaStats
             if (radioButton1.Checked)
                 gatheropt = "GATHER AUTO";
 
+
+            if (checkBoxForce.Checked)
+            {
+                force = "TRUE";
+            }
+
+            else
+            {
+                force = "FALSE";
+            }
+
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -574,7 +587,7 @@ namespace ClassSchemaStats
                 OracleConnection conntmp = (OracleConnection)Connection.Clone();
                 conntmp.Open();
                 SetStatsValues();
-                FormIndexStats fts = new FormIndexStats(conntmp, owner, tablen, degree, estimatePercent, noinvalidate, sessionOptions);
+                FormIndexStats fts = new FormIndexStats(conntmp, owner, tablen, degree, estimatePercent, noinvalidate, force, sessionOptions);
                 
                 fts.StartPosition = FormStartPosition.CenterParent;
                 fts.Show(this);

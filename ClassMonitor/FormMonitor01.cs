@@ -59,7 +59,7 @@ namespace ClassMonitor
                 toolStripButtonShowHistorical.Visible = true;
 
 
-            toolStripComboBox1.SelectedIndex = 7;
+            toolStripComboBox1.SelectedIndex = 11;
             interval = Interval;
             this.Width = width;
             
