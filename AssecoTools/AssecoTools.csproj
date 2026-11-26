@@ -276,6 +276,10 @@
       <Project>{efd7c7aa-669e-4599-b463-e715f64e252a}</Project>
       <Name>ClassMonitor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClassMViews\ClassMViews.csproj">
+      <Project>{853f6590-2163-493d-a3b5-57effc9a274d}</Project>
+      <Name>ClassMViews</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassReports\ClassReports.csproj">
       <Project>{d89728cd-f8b6-473a-92d3-84e03d5164bd}</Project>
       <Name>ClassReports</Name>

@@ -37,6 +37,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.richTextBoxSqlPlan = new System.Windows.Forms.RichTextBox();
             this.tabControlProfile = new System.Windows.Forms.TabControl();
             this.tabPageSql = new System.Windows.Forms.TabPage();
@@ -53,7 +54,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridViewSC = new System.Windows.Forms.DataGridView();
             this.bindingSourceSqlProfile = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControlProfile.SuspendLayout();
             this.tabPageSql.SuspendLayout();
@@ -130,6 +130,16 @@
             this.toolStripButtonCancel.Size = new System.Drawing.Size(35, 22);
             this.toolStripButtonCancel.Text = "Stop";
             this.toolStripButtonCancel.Click += new System.EventHandler(this.toolStripButtonCancel_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(39, 22);
+            this.toolStripButton1.Text = "Flush";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // richTextBoxSqlPlan
             // 
@@ -264,9 +274,9 @@
             this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.listBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 150);
+            this.panel1.Location = new System.Drawing.Point(0, 233);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(991, 312);
+            this.panel1.Size = new System.Drawing.Size(991, 229);
             this.panel1.TabIndex = 4;
             // 
             // richTextBox1
@@ -275,7 +285,7 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(251, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(740, 312);
+            this.richTextBox1.Size = new System.Drawing.Size(740, 229);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
@@ -286,7 +296,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(251, 312);
+            this.listBox1.Size = new System.Drawing.Size(251, 229);
             this.listBox1.TabIndex = 3;
             // 
             // dataGridViewSC
@@ -303,22 +313,12 @@
             this.dataGridViewSC.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewSC.RowHeadersVisible = false;
             this.dataGridViewSC.RowTemplate.Height = 16;
-            this.dataGridViewSC.Size = new System.Drawing.Size(991, 150);
+            this.dataGridViewSC.Size = new System.Drawing.Size(991, 233);
             this.dataGridViewSC.TabIndex = 0;
             // 
             // bindingSourceSqlProfile
             // 
             this.bindingSourceSqlProfile.CurrentChanged += new System.EventHandler(this.bindingSourceSqlProfile_CurrentChanged);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(39, 22);
-            this.toolStripButton1.Text = "Flush";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // FormSqlId
             // 

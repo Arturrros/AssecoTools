@@ -328,5 +328,12 @@ namespace ClassSession
         /// </summary>
         public static string PX_SESSION = "select qcsid, qcserial# from v$px_session px where px.sid = :sid";
         public static string PX_SESSION_CNT = "select count(*) from v$px_session px where px.qcsid = :sid";
+
+        public static string MVIEWVSMAIN = "SELECT\r\n    r.refresh_id,\r\n    s.mv_owner,\r\n    s.mv_name,\r\n    r.start_time,\r\n    r.end_time,\r\n    r.elapsed_time,     \r\n    s.refresh_method,\r\n    s.initial_num_rows,\r\n    s.final_num_rows\r\n" +
+            "FROM dba_mvref_run_stats r\r\nJOIN dba_mvref_stats s ON r.refresh_id = s.refresh_id\r\n" +
+            "ORDER BY r.start_time DESC";
+
+
+
     }
 }

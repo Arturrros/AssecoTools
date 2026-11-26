@@ -80,6 +80,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSqlId = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -372,6 +373,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button_GlobalUndo);
@@ -605,6 +607,16 @@
             this.btnSqlId.UseVisualStyleBackColor = true;
             this.btnSqlId.Click += new System.EventHandler(this.btnSqlId_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(552, 47);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(49, 22);
+            this.button6.TabIndex = 22;
+            this.button6.Text = "MViews";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -691,6 +703,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
