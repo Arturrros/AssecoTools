@@ -22,6 +22,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7113B544-B2A1-4FA5-9971-D063F8DE0037}"
 	ProjectSection(SolutionItems) = preProject
 		LangHelper.xlsx = LangHelper.xlsx
+		MVievsHelper.sql = MVievsHelper.sql
 		StartOracle.ps1 = StartOracle.ps1
 		StopOracle.ps1 = StopOracle.ps1
 	EndProjectSection
